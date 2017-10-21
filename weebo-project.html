@@ -64,28 +64,67 @@
 				<div class="grid-container">
 					<div class="coffee-controller" ng-controller="CoffeeController" data-ng-init="priceFilter()">
 
-						<div class="price-selector">
+							<!-- <p> -->
+								<!-- <label for="amount">Price range:</label> -->
+								<!-- <input type="text" id="min-amount" readonly style="border:0; color:#f6931f; font-weight:bold;"> -->
+								<!-- <input type="text" id="max-amount" readonly style="border:0; color:#f6931f; font-weight:bold;"> -->
 
-							<p>
-								<label for="amount">Price range:</label>
-								<input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
-							</p>
-
-							<div id="slider-range"></div>
-							<button class="update-price" ng-click="sliderValues">Update Price</button>
-							<!-- <div>{{sliderValues[1]}}</div> -->
-
+							<!-- </p> -->
+						<div class="slider-wrapper">
+							<div><input type="text" id="min-amount" readonly"></div>
+							<div class="slider"><div id="slider-range"></div></div>
+							<div><input type="text" id="max-amount" readonly"></div>
+							<button class="update-price" ng-click="filterType = priceFilter">Update Price</button>
 						</div>
+
+
+							<!-- <div>{{sliderValues[1]}}</div> -->
 						<!-- <div ng-click="maxPrice = sliderValues[1]">Display Price</div> -->
 						<!-- <div>{{maxPrice}}</div> -->
-						<span ng-click="sortType = ''; sortReverse = !sortReverse">Popularity</span><span ng-click="sortType = 'price_raw'; sortReverse = !sortReverse">Price</span><span>Price</span>
-
+						<button ng-click="sortType = ''; sortReverse = !sortReverse">Popularity</button><button ng-click="sortType = 'price_raw'; sortReverse = !sortReverse">Price</button>
+						<div class-="search-form-wrapper">
 						<form class="search-form">
 							<!-- <label class="search-label"s></label> -->
-							<input id="search-input" value="search..."><button class="search-filter" ng-click="">Search</button>
+							<input id="search-input" placeholder="search..."><button class="search-filter" ng-click="filterType = searchFilter">Search</button>
 						</form>
+					</div>
 
-						<div class="coffee-data-list" ng-repeat="coffeeItem in coffeeData | orderBy:sortType:sortReverse | filter: priceFilter | limitTo: itemLimit" >
+					<!-- <select ng-model="selectedName" ng-options="coffeeItem.category for coffeeItem in coffeeData | unique: 'category">
+						<option value="" disabled selected>Category</option>
+					</select>	 -->	
+
+					<div class="category-dropdowm-wrapper">
+						<form class="category-dropdown">
+							<select name="category-dropdown" id="category-dropdown-select">
+								<option value="" disabled selected>Category</option>
+								<option value="">All</option>
+								<option id="category-option" ng-repeat="coffeeItem in coffeeData | unique: 'category'" value="{{coffeeItem.category}">{{coffeeItem.category}}</option>			
+							</select>
+							<button ng-click="filterType = categoryFilter">Search by Category</button>
+						</form>
+					</div>
+
+						<div class="brand-dropdowm-wrapper">
+						<form class="brand-dropdown">
+							<select name="brand-dropdown" class="brand-dropdown-select">
+								<option value="" disabled selected>Brand</option>
+								<option value="">All</option>
+								<option id="brand-option"  ng-repeat="coffeeItem in coffeeData | unique: 'brand'" value="{{coffeeItem.brand}}">{{coffeeItem.brand}}</option>			
+							</select>
+						</form>
+					</div>
+
+					<div class="category-dropdowm-wrapper">
+						<form class="category-dropdown">
+							<select name="category-dropdown" class="category-dropdown-select">
+								<option value="" disabled selected>Merchant</option>
+								<option value="">All</option>					
+								<option id="merchant-option"  ng-repeat="coffeeItem in coffeeData | unique: 'merchant'" value="{{coffeeItem.merchant}">{{coffeeItem.merchant}}</option>
+							</select>
+						</form>
+					</div>		
+
+						<div class="coffee-data-list" ng-repeat="coffeeItem in coffeeData | orderBy:sortType:sortReverse | filter: filterType | limitTo: itemLimit" >
 							<div class="column">
 								<div ng-mouseenter="nameHighlightEnter()" ng-mouseleave="nameHighlightLeave()" class="border">
 									<div class="coffee-item">
@@ -142,14 +181,18 @@
 		$( "#slider-range" ).slider({
 			range: true,
 			min: 0,
-			max: 1000,
-			values: [ 0, 1000 ],
+			max: 500,
+			values: [ 0, 500 ],
 			slide: function( event, ui ) {
-				$( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
+				// $( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
+				$( "#min-amount" ).val( "$" + ui.values[ 0 ]);
+				$( "#max-amount" ).val( "$" + ui.values[ 1 ]);
+				// $( "#amount" ).val( "$" + ui.values[ 1 ])
 			}
 		});
-		$( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) +
-			" - $" + $( "#slider-range" ).slider( "values", 1 ) );
+		$( "#min-amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ));
+		$( "#max-amount" ).val( "$" + $( "#slider-range" ).slider( "values", 1 ));
+			// " - $" + $( "#slider-range" ).slider( "values", 1 ) );
 	} );
 
 </script>

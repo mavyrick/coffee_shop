@@ -1,5 +1,6 @@
 body {
-  padding-top: 150px;
+  padding-top: 100px;
+  font-family: arial;
 }
 
 /*.coffee-image-wrapper {
@@ -7,6 +8,10 @@ body {
 }*/
 
 /*main content*/
+
+a {
+  color: black;
+}
 
 .grid-container {
   display: block;
@@ -19,6 +24,7 @@ body {
 .column {
   float: left;
   height: 300px;
+  /*margin-top: 50px;*/
   width: 321px;
   padding: 10px;
 }
@@ -62,10 +68,6 @@ body {
   cursor: pointer;
 }
 
-a {
-  color: black;
-}
-
 .add-to-cart {
   text-align: center;
   margin: auto;
@@ -93,10 +95,6 @@ a {
   text-decoration: none;
   cursor: pointer;
 }*/
-
-.t-shirts-price {
-  color: #777777;
-}
 
 .text {
   font-family: arial;
@@ -138,7 +136,7 @@ a {
   top: 0px;
   width: 100%;
   height: 100px;
-  background-color: grey;
+  background-color: steelblue;
   /*border-top: dotted 10px #A67B5B;*/
   /*border-bottom: dotted 10px #A67B5B;*/
   z-index: 100;
@@ -186,7 +184,74 @@ hr.style-eight:after {
 
 /*price slider*/
 
-.price-selector {
-  margin: 0 auto;
+.slider-wrapper {
+   margin: 0 auto;
   width: 500px;
+  padding: 30px;
+}
+
+.slider {
+padding: 10px;
+}
+
+#slider-range {
+}
+
+.price-selector {
+ 
+}
+
+#min-amount {
+  float: left;
+  position: relative;
+  right: 75px;
+  width: 65px;
+  text-align: center;
+  border-radius: 5px;
+  border: solid 1px lightgrey;
+  box-shadow: 1px 1px 1px lightgrey;
+/*  border: 0;
+*/  color: #f6931f;
+  font-size: 20px;
+  font-weight: bold;
+  z-index: -100;
+
+}
+
+#max-amount {
+  float: right;
+  position: relative;
+  left: 75px;
+  bottom: 31px;
+  width: 65px;
+  text-align: center;
+  border-radius: 5px;
+  border: solid 1px lightgrey;
+  box-shadow: 1px 1px 1px lightgrey;
+  /*border: 0;*/
+  color: #f6931f;
+  font-size: 20px;
+  font-weight: bold;
+  z-index: -100;
+}
+
+.update-price {
+  height: 45px;
+  width: 235px;
+  margin: 25px;
+  background-color: #0a92ca;
+  border: 1px solid #0a92ca;
+  border-radius: 1000px;
+  font-size: 25px;
+  color: white;
+}
+
+.update-price:hover {
+  background-color: #0675A2;
+}
+
+@media only screen and (max-width: 600px) {
+    .slider-wrapper {
+        width: 300px;
+    }
 }

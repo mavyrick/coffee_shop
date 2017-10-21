@@ -12,13 +12,41 @@
 // .then(contents => console.log(contents))
 // .catch(console.log("Can’t access " + url + " response. Blocked by browser?"))
 
-$.getScript("coffee-data.js", function() {
+// $.getScript("coffee-data.js", function() {
 
- alert("Script loaded but not necessarily executed.");
+//  alert("Script loaded but not necessarily executed.");
 
-});
+// });
 
 var app = angular.module('app', [])
+
+app.filter('unique', function() {
+   // we will return a function which will take in a collection
+   // and a keyname
+   return function(collection, keyname) {
+      // we define our output and keys array;
+      var output = [], 
+          keys = [];
+      
+      // we utilize angular's foreach function
+      // this takes in our original collection and an iterator function
+      angular.forEach(collection, function(item) {
+          // we check to see whether our object exists
+          var key = item[keyname];
+          // if it's not already part of our keys array
+          if(keys.indexOf(key) === -1) {
+              // add it to our keys array
+              keys.push(key); 
+              // push this item to our final output array
+              output.push(item);
+          }
+      });
+      // return our array which should be devoid of
+      // any duplicates
+      return output;
+   };
+});
+
 
 
 // $(document).ready(function() {
@@ -57,10 +85,10 @@ $scope.coffeeData = coffeeJSON.data;
 
 $scope.sortType = "";
 
-$scope.filterType = $scope.priceFilter
+$scope.filterType = ""
 
 $scope.searchFilter = function(coffeeItem) {
-  return (coffeeItem.description.includes(document.getElementById("search-input").value))
+  return (coffeeItem.description.includes(document.getElementById("search-input").value) || coffeeItem.name.includes(document.getElementById("search-input").value))
 };
 
 // $("#slider-range").on("slidechange", function(event, ui) {
@@ -70,6 +98,22 @@ $scope.searchFilter = function(coffeeItem) {
   return (coffeeItem.price_raw >= priceValues[0]) && (coffeeItem.price_raw <= priceValues[1]);
 };
 })
+
+$scope.categoryFilter = function(coffeeItem) {
+  var e = document.getElementById("category-dropdown-select")
+  return (e.options[e.selectedIndex].text)
+
+//   var e = document.getElementById("ddlViewBy");
+// var strUser = e.options[e.selectedIndex].value;
+};
+
+$scope.brandFilter = function(coffeeItem) {
+  return (document.getElementById("brand-option").value)
+};
+
+$scope.merchantFilter = function(coffeeItem) {
+  return (document.getElementById("merchant-option").value)
+};
 // })
 
 $scope.maxPrice = "test"
@@ -83,7 +127,7 @@ $scope.maxPrice = "test"
 // })
 
 $scope.nameHighlightEnter = function() {
-  $(".name-link-" + $scope.coffeeData[this.$index].id).css("color", "#A67B5B");
+  $(".name-link-" + $scope.coffeeData[this.$index].id).css("color", "#f03d41");
 }
 
 $scope.nameHighlightLeave = function() {
@@ -154,4 +198,43 @@ setTimeout(function() {
 //    }
 
 // });
+
+angular.module('ui.filters').filter('unique', function () {
+
+  return function (items, filterOn) {
+
+    if (filterOn === false) {
+      return items;
+    }
+
+    if ((filterOn || angular.isUndefined(filterOn)) && angular.isArray(items)) {
+      var hashCheck = {}, newItems = [];
+
+      var extractValueToCompare = function (item) {
+        if (angular.isObject(item) && angular.isString(filterOn)) {
+          return item[filterOn];
+        } else {
+          return item;
+        }
+      };
+
+      angular.forEach(items, function (item) {
+        var valueToCheck, isDuplicate = false;
+
+        for (var i = 0; i < newItems.length; i++) {
+          if (angular.equals(extractValueToCompare(newItems[i]), extractValueToCompare(item))) {
+            isDuplicate = true;
+            break;
+          }
+        }
+        if (!isDuplicate) {
+          newItems.push(item);
+        }
+
+      });
+      items = newItems;
+    }
+    return items;
+  };
+});
 
