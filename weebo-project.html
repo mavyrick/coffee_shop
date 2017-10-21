@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Weebo Project</title>
+
+	<!-- style -->
+	<link rel="stylesheet/less" type="text/css" href="weebo-demo.less"/>
+	<!-- <script src="less.js" type="text/javascript"></script> -->
+
+	<link rel="stylesheet" type="text/css" href="weebo-project.css">
+
+	<!-- angular -->
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+	
+	<!-- jquery -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+	<!-- bootstrap -->
+	<link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" >
+
+
+
+	<!-- slider files -->
+<!-- 	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	<link rel="stylesheet" href="/resources/demos/style.css">
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> -->
+	<link rel="stylesheet" href="slider/jquery-ui/jquery-ui.min.css">
+	<!-- <script src="slider/jquery-ui/external/jquery/jquery.js"></script> -->
+	<script src="slider/jquery-ui/jquery-ui.min.js"></script>
+
+	<!-- project javascript -->
+	<script type="text/javascript" src="weebo-project.js"></script>
+	<script type="text/javascript" src="coffee-data.js"></script>
+	<!-- <script type="text/javascript" src="pagination/paging.js"></script> -->
+
+</head>
+
+<body ng-app="app">
+
+	<div class="coffee-controller" ng-controller="CoffeeController">
+		<nav class="coffee-header">
+			<div class="coffee-header-content">
+				<div class="coffee-title">Coffee Shop</div>
+				<!-- <hr class="style-eight"> -->
+				<!-- <div class="price-selector">
+
+					<p>
+						<label for="amount">Price range:</label>
+						<input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
+					</p>
+
+					<div id="slider-range"></div>
+					<div>{{sliderValues[1]}}</div>
+
+				</div>
+				 <div ng-click="maxPrice = sliderValues[1]">Display Price</div>
+				 <div>{{maxPrice}}</div>
+				 <span>Popularity</span><span>Lowest Price</span><span>Highest Price</span> -->
+
+				</nav>
+
+				<div class="grid-container">
+					<div class="coffee-controller" ng-controller="CoffeeController" data-ng-init="priceFilter()">
+
+						<div class="price-selector">
+
+							<p>
+								<label for="amount">Price range:</label>
+								<input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
+							</p>
+
+							<div id="slider-range"></div>
+							<button class="update-price" ng-click="sliderValues">Update Price</button>
+							<!-- <div>{{sliderValues[1]}}</div> -->
+
+						</div>
+						<!-- <div ng-click="maxPrice = sliderValues[1]">Display Price</div> -->
+						<!-- <div>{{maxPrice}}</div> -->
+						<span ng-click="sortType = ''; sortReverse = !sortReverse">Popularity</span><span ng-click="sortType = 'price_raw'; sortReverse = !sortReverse">Price</span><span>Price</span>
+
+						<form class="search-form">
+							<!-- <label class="search-label"s></label> -->
+							<input id="search-input" value="search..."><button class="search-filter" ng-click="">Search</button>
+						</form>
+
+						<div class="coffee-data-list" ng-repeat="coffeeItem in coffeeData | orderBy:sortType:sortReverse | filter: priceFilter | limitTo: itemLimit" >
+							<div class="column">
+								<div ng-mouseenter="nameHighlightEnter()" ng-mouseleave="nameHighlightLeave()" class="border">
+									<div class="coffee-item">
+										<a href="{{coffeeItem.url}}">
+											<div class="logo-price">
+												<img class="merchant-logo" src="{{coffeeItem.merchant_logo}}">
+												<div class="price">{{coffeeItem.price}}</div>
+											</div>
+											<br>
+											<br>
+											<div class="coffee-image-wrapper">
+												<img src="{{coffeeItem.image}}" class="coffee-item-image">
+											</div>
+											<div class="text">
+												<div class="display-name">
+													<a class="name-link name-link-{{coffeeItem.id}}" href="{{coffeeItem.url}}">{{coffeeItem.name}}</a>
+												</div>
+												<div class="brand">{{coffeeItem.brand}}</div>
+												<div>{{coffeeItem.merchant}}</div>
+												<div class="add-to-cart">
+													<button class="button" type="submit">Add to cart</button>
+													<!-- </form> -->
+												</div>
+											</a>
+										</div>
+									</div>
+									<!-- </div> -->
+								</div>
+							</div>
+						</div>					
+					</div> 
+  <!-- <div class="search" ng-controller="SearchController">
+  	<div class="coffee-list" ng-repeat="coffeeItem in coffeeData">
+    <div>{{coffeeItem.name}}</div>
+    <div>{{coffeeItem.price}}</div>
+    <div>{{coffeeItem.description}}</div>
+    <div>{{coffeeItem.brand}}</div>
+    <div>{{coffeeItem.merchant}}</div>
+    <a href="{{coffeeItem.url}}">{{coffee.name}}</a>
+  	<img src="{{coffeeItem.merchant_logo}}">
+  	<img src="{{coffeeItem.image}}">
+  </div>
+  <div>{{coffeeData}}</div>
+</div> -->
+
+
+
+<!-- <script type="text/javascript" src="slider/nouislider.js"></script> -->
+<!-- <script src="//cdn.bootcss.com/noUiSlider/8.5.1/nouislider.js"></script>	 -->
+
+<script>
+	// price slider
+	$( function() {
+		$( "#slider-range" ).slider({
+			range: true,
+			min: 0,
+			max: 1000,
+			values: [ 0, 1000 ],
+			slide: function( event, ui ) {
+				$( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
+			}
+		});
+		$( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) +
+			" - $" + $( "#slider-range" ).slider( "values", 1 ) );
+	} );
+
+</script>
+
+</body>
+</html>
