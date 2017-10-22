@@ -26,7 +26,7 @@ app.filter('unique', function() {
    return function(collection, keyname) {
       // we define our output and keys array;
       var output = [], 
-          keys = [];
+      keys = [];
       
       // we utilize angular's foreach function
       // this takes in our original collection and an iterator function
@@ -39,13 +39,13 @@ app.filter('unique', function() {
               keys.push(key); 
               // push this item to our final output array
               output.push(item);
-          }
-      });
+            }
+          });
       // return our array which should be devoid of
       // any duplicates
       return output;
-   };
-});
+    };
+  });
 
 
 
@@ -81,27 +81,59 @@ app.filter('unique', function() {
 //         });
 // });
 
-$scope.coffeeData = coffeeJSON.data;
+// $scope.keyword = function(coffeeItem) {
+//   return document.getElementById("product-search-input").value
+// }
+
+// $scope.keyword = "ipad"
+
+// document.getElementById("product-search-input").value
+
+
+$scope.productSearch = function () {
+  $scope.keyword = document.getElementById("product-search-input").value;
+// $scope.keyword = ""
+$http({
+  method: "GET",
+  url: "http://uk.gomerchants.net/inc/demo.php?keyword=" + $scope.keyword,
+}).then(function mySuccess(response) {
+  $scope.coffeeData = response.data;
+}, function myError(response) {
+  $scope.coffeeData = response.statusText;
+});
+}
+
+
+// $scope.coffeeData = coffeeJSON.data;
 
 $scope.sortType = "";
 
 $scope.filterType = ""
 
 $scope.searchFilter = function(coffeeItem) {
-  return (coffeeItem.description.includes(document.getElementById("search-input").value) || coffeeItem.name.includes(document.getElementById("search-input").value))
+  return (coffeeItem.description.includes(document.getElementById("filter-search-input").value) || coffeeItem.name.includes(document.getElementById("filter-search-input").value))
 };
 
 // $("#slider-range").on("slidechange", function(event, ui) {
   angular.element(document).ready(function() {
- $scope.priceFilter = function(coffeeItem) {
-  var priceValues = $("#slider-range" ).slider("values");
-  return (coffeeItem.price_raw >= priceValues[0]) && (coffeeItem.price_raw <= priceValues[1]);
-};
+   $scope.priceFilter = function(coffeeItem) {
+    var priceValues = $("#slider-range" ).slider("values");
+    return (coffeeItem.price_raw >= priceValues[0]) && (coffeeItem.price_raw <= priceValues[1]);
+  };
 })
 
-$scope.categoryFilter = function(coffeeItem) {
-  var e = document.getElementById("category-dropdown-select")
-  return (e.options[e.selectedIndex].text)
+  $scope.categoryFilter = function(coffeeItem) {
+    var e = document.getElementById("category-dropdown-select")
+    return (e.options[e.selectedIndex].text)
+    function Ctrl($scope) {
+      $scope.items = [{
+        value: 'item_1_id',
+        text: 'Item 1'
+      }, {
+        value: 'item_2_id',
+        text: 'Item 2'
+      }];   
+    }
 
 //   var e = document.getElementById("ddlViewBy");
 // var strUser = e.options[e.selectedIndex].value;
@@ -136,16 +168,48 @@ $scope.nameHighlightLeave = function() {
 
 $scope.itemLimit = 20;
 angular.element(document).ready(function() {
-setTimeout(function() {
-  $(window).scroll(function() {
-   if($(window).scrollTop() + $(window).height() > ($(document).height() - 100)) {
-     $scope.itemLimit = $scope.itemLimit + 4;
-   }
- })
-},100)
+  setTimeout(function() {
+    $(window).scroll(function() {
+     if($(window).scrollTop() + $(window).height() > ($(document).height() - 100)) {
+       $scope.itemLimit = $scope.itemLimit + 20;
+     }
+   })
+  },100)
 })
 
 });
+
+window.onscroll = function() {
+  var scrollTop = (window.pageYOffset !== undefined) ? window.pageYOffset : (document.documentElement || document.body.parentNode || document.body).scrollTop;
+  var scrollBottom = scrollTop + $(window).height()
+  var minimizeHeader = document.getElementById("minimize-header")
+  var headerTop = document.getElementById("coffee-header-top")
+  var headerBottom = document.getElementById("coffee-header-bottom")
+  var filterDisplay = document.getElementById("filter-display")
+  var headerSlider = document.getElementById("header-price-slider")
+
+  // var testFooter = document.getElementById("test-footer")
+  // var scrolledOnce = false;
+  if (scrollTop >= minimizeHeader.offsetTop) {
+    headerBottom.classList.add("search-fixed")
+    minimizeHeader.style.paddingBottom = "50px";
+    // coffeeHeader.style.visibility = "hidden"
+
+    // cartHeader.style.visibility = "visible"
+    // $("#cart-header").slideDown(400);
+  } else {
+    headerBottom.classList.remove("search-fixed")
+    headerTop.style.paddingBottom = "0px";
+    minimizeHeader.style.paddingBottom = "0px"
+        // coffeeHeader.style.visibility = "visible"
+    // $("#cart-header").slideUp(400), function() { 
+      // cartHeader.style.visibility = "hidden"
+    }
+
+    if (scrollTop >= filterDisplay.offsetTop) {
+      headerSlider.style.display = "block";
+    }
+  }
 
 //   $http({
 //     method: "POST",
@@ -199,42 +263,42 @@ setTimeout(function() {
 
 // });
 
-angular.module('ui.filters').filter('unique', function () {
+// angular.module('ui.filters').filter('unique', function () {
 
-  return function (items, filterOn) {
+//   return function (items, filterOn) {
 
-    if (filterOn === false) {
-      return items;
-    }
+//     if (filterOn === false) {
+//       return items;
+//     }
 
-    if ((filterOn || angular.isUndefined(filterOn)) && angular.isArray(items)) {
-      var hashCheck = {}, newItems = [];
+//     if ((filterOn || angular.isUndefined(filterOn)) && angular.isArray(items)) {
+//       var hashCheck = {}, newItems = [];
 
-      var extractValueToCompare = function (item) {
-        if (angular.isObject(item) && angular.isString(filterOn)) {
-          return item[filterOn];
-        } else {
-          return item;
-        }
-      };
+//       var extractValueToCompare = function (item) {
+//         if (angular.isObject(item) && angular.isString(filterOn)) {
+//           return item[filterOn];
+//         } else {
+//           return item;
+//         }
+//       };
 
-      angular.forEach(items, function (item) {
-        var valueToCheck, isDuplicate = false;
+//       angular.forEach(items, function (item) {
+//         var valueToCheck, isDuplicate = false;
 
-        for (var i = 0; i < newItems.length; i++) {
-          if (angular.equals(extractValueToCompare(newItems[i]), extractValueToCompare(item))) {
-            isDuplicate = true;
-            break;
-          }
-        }
-        if (!isDuplicate) {
-          newItems.push(item);
-        }
+//         for (var i = 0; i < newItems.length; i++) {
+//           if (angular.equals(extractValueToCompare(newItems[i]), extractValueToCompare(item))) {
+//             isDuplicate = true;
+//             break;
+//           }
+//         }
+//         if (!isDuplicate) {
+//           newItems.push(item);
+//         }
 
-      });
-      items = newItems;
-    }
-    return items;
-  };
-});
+//       });
+//       items = newItems;
+//     }
+//     return items;
+//   };
+// });
 

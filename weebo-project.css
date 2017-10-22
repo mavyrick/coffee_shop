@@ -1,204 +1,318 @@
 body {
-  padding-top: 100px;
-  font-family: arial;
+/*  padding-top: 150px;
+*/  font-family: arial;
 }
 
 /*.coffee-image-wrapper {
   mix-blend-mode: multiply;
-}*/
+  }*/
 
-/*main content*/
+  /*main content*/
 
-a {
-  color: black;
-}
+  a {
+    color: black;
+  }
 
-.grid-container {
-  display: block;
-  margin: 0 auto;
-  width: 100%;
-  max-width: 1366px;
-  text-align: center;
-}
+  .grid-container {
+    display: block;
+    margin: 0 auto;
+    width: 95%;
+    /*max-width: 1366px;*/
+    text-align: center;
+  }
 
-.column {
-  float: left;
-  height: 300px;
-  /*margin-top: 50px;*/
-  width: 321px;
-  padding: 10px;
-}
+  .results {
+    width: 85%;
+    float: right;
 
-.coffee-item {
-  height: auto;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  /*max-width: 200px;*/
-}
+  }
+
+  .column {
+    float: left;
+    height: 300px;
+    margin-top: 50px;
+    width: 321px;
+    padding: 10px;
+  }
+
+  .coffee-item {
+    height: auto;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    /*max-width: 200px;*/
+  }
 
 
-.button {
-  display: inline-block;
-  zoom: 1;
-  font-weight: 600;
-  color: #ffffff;
-  background: #f03d41;
-  border-radius: 2px;
-  font-size: 15px;
-  line-height: 16px;
-  text-align: center;
-  border: 0;
-  -webkit-appearence: none;
-  -webkit-transition: background-color 0.15s ease-in-out;
-  -moz-transition: background-color 0.15s ease-in-out;
-  -ms-transition: background-color 0.15s ease-in-out;
-  -o-transition: background-color 0.15s ease-in-out;
-  transition: background-color 0.15s ease-in-out;
-  float: none;
-  z-index: 1;
-  display: inline;
-  width: 100%;
-  font-size: 13px;
-  height: 30px;
-}
+  .button {
+    display: inline-block;
+    zoom: 1;
+    font-weight: 600;
+    color: #ffffff;
+    background: #f03d41;
+    border-radius: 2px;
+    font-size: 15px;
+    line-height: 16px;
+    text-align: center;
+    border: 0;
+    -webkit-appearence: none;
+    -webkit-transition: background-color 0.15s ease-in-out;
+    -moz-transition: background-color 0.15s ease-in-out;
+    -ms-transition: background-color 0.15s ease-in-out;
+    -o-transition: background-color 0.15s ease-in-out;
+    transition: background-color 0.15s ease-in-out;
+    float: none;
+    z-index: 1;
+    display: inline;
+    width: 100%;
+    font-size: 13px;
+    height: 30px;
+  }
 
-.button:hover {
-  background-color: #D4292D;
-  cursor: pointer;
-}
+  .button:hover {
+    background-color: #D4292D;
+    cursor: pointer;
+  }
 
-.add-to-cart {
-  text-align: center;
-  margin: auto;
-}
+  .add-to-cart {
+    text-align: center;
+    margin: auto;
+  }
 
-.coffee-item-image {
-  height: 150px;
-  display: block;
-  text-align: center;
-  margin: 0 auto;
-}
+  .coffee-item-image {
+    height: 150px;
+    display: block;
+    text-align: center;
+    margin: 0 auto;
+  }
 
 /*.coffee-column {
   height: 250px;
   width: 228px;
-}*/
+  }*/
 
-.name-link {
-  color: black;
-  text-decoration: none;
-}
+  .name-link {
+    color: black;
+    text-decoration: none;
+  }
 
 /*.name-link:hover {
   color: #f03d41;
   text-decoration: none;
   cursor: pointer;
-}*/
+  }*/
 
-.text {
-  font-family: arial;
-  font-size: 13px;
-  padding-top: 12px;
-  padding-bottom: 12px;
+  .text {
+    font-family: arial;
+    font-size: 13px;
+    padding-top: 12px;
+    padding-bottom: 12px;
 
-}
-
-.border {
-  padding: 15px;
-  cursor: pointer;
-}
-
-.border:hover {
-  -webkit-box-shadow: 0 0 10px black;
-  box-shadow: 0 0 10px grey;
-}
-
-.product-image-link {
-  display: block;
-  text-align: center;
-  margin: 0 auto;
-}
-
-.price {
-  float: right;
-}
-
-.merchant-logo {
-  float: left;
-}
-
-/*navbar*/
-
-.coffee-header {
-  position: fixed;
-  left: 0px;
-  top: 0px;
-  width: 100%;
-  height: 100px;
-  background-color: steelblue;
-  /*border-top: dotted 10px #A67B5B;*/
-  /*border-bottom: dotted 10px #A67B5B;*/
-  z-index: 100;
-}
-
-.coffee-title {
-  line-height: 115px;
-  margin: 0 auto;
-  text-align: center;
-  font-family: ExpressoCaffe;
-  color: white;
-  font-size: 45px;
-}
-
-
-/*custom fonts*/
-
-@font-face {
-  font-family: "ExpressoCaffe";
-  src: url("fonts/Channel.ttf");
   }
 
-/*horizontal divider*/
+  .border {
+    padding: 15px;
+    cursor: pointer;
+  }
 
-hr.style-eight {
-    overflow: visible; /* For IE */
-    padding: 0;
-    border: none;
-    border-top: medium double #333;
-    color: #333;
+  .border:hover {
+    -webkit-box-shadow: 0 0 10px black;
+    box-shadow: 0 0 10px grey;
+  }
+
+  .product-image-link {
+    display: block;
     text-align: center;
-    border-color: white;
-}
+    margin: 0 auto;
+  }
 
-hr.style-eight:after {
-    content: "§";
-    display: inline-block;
-    position: relative;
-    top: -0.7em;
-    font-size: 1.5em;
-    padding: 0 0.25em;
+  .price {
+    float: right;
+  }
+
+  .merchant-logo {
+    float: left;
+  }
+
+  /*header*/
+
+  #coffee-header-top {
+/*    position: relative;
+    left: 0px;
+    top: 0px;*/
+    width: 100%;
+    height: 100px;
+    background-color: steelblue;
+    /*border-top: dotted 10px #A67B5B;*/
+    /*border-bottom: dotted 10px #A67B5B;*/
+    z-index: 100;
+  }
+
+  .coffee-title {
+    line-height: 115px;
+    margin: 0 auto;
+    text-align: center;
+    font-family: ExpressoCaffe;
     color: white;
-    background: #6f4e37;
+    font-size: 45px;
+  }
+
+  #header-min-amount {
+  float: left;
+  position: relative;
+  right: 75px;
+  width: 65px;
+  text-align: center;
+  border-radius: 5px;
+  border: solid 1px lightgrey;
+  box-shadow: 1px 1px 1px lightgrey;
+/*  border: 0;
+*/  color: #f6931f;
+font-size: 20px;
+font-weight: bold;
+z-index: -100;
+
 }
 
-/*price slider*/
+#header-max-amount {
+  float: right;
+  position: relative;
+  left: 75px;
+  bottom: 31px;
+  width: 65px;
+  text-align: center;
+  border-radius: 5px;
+  border: solid 1px lightgrey;
+  box-shadow: 1px 1px 1px lightgrey;
+  /*border: 0;*/
+  color: #f6931f;
+  font-size: 20px;
+  font-weight: bold;
+  z-index: -100;
+}
 
-.slider-wrapper {
+  /*product search*/
+
+  .search-nav {
+    width: 100%;
+    height: 50px;
+    margin-top: -15px;
+    background-color: steelblue;
+    /*border-top: dotted 10px #A67B5B;*/
+    /*border-bottom: dotted 10px #A67B5B;*/
+  }
+
+  #coffee-header-bottom {
+    /*margin-top: -12px;*/
+    height: 50px;
+    padding-top: 8px;
+    text-align: center;
+    background-color: steelblue;
+    z-index: 100;
+
+  }
+
+  #product-search-input {
+    width: 285px;
+    height: 35px;
+    font-size: 16px;
+    background-color: white;
+    border: 0;
+    border-radius: 7px;
+    padding-left: 15px;
+  }
+
+  .product-search-button {
+    height: 35px;
+    width: 100px;
+    background-color: #ffa31a;
+    border: 1px solid #ffa31a;
+    border-radius: 7px;
+    font-size: 17px;
+    color: white;
+  }
+
+  .product-search-button:hover {
+    background-color: #f6931f;
+    border: 1px solid #f6931f;
+  }
+
+  .search-fixed {
+    position: fixed;
+    width: 100%;
+    margin: 0px;
+    top: 0px;
+    left: 0px;
+  }
+
+  #header-price-slider {
+    display: none;
+    margin: 0 auto;
+     width: 400px;
+     padding: 30px;
+  }
+
+  .header-price-filter {
+
+  }
+
+  .header-popularity-filter {
+
+  }
+
+
+  /*custom fonts*/
+
+  @font-face {
+    font-family: "ExpressoCaffe";
+    src: url("fonts/Channel.ttf");
+  }
+
+  /*sidebar*/
+
+  .sidebar {
+    float: left;
+    width: 15%;
+    text-align: left;
+  }
+
+  .filters {
+    position: fixed;
+    background-color: grey;
+  }
+
+  .sidebar-title {
+    font-weight: bold;
+  }
+
+  /*footer*/
+
+  .footer-wrapper {
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+    height: 75px;
+    background-color: steelblue;
+  }
+
+  /*price slider*/
+
+  .slider-wrapper {
    margin: 0 auto;
-  width: 500px;
-  padding: 30px;
-}
+   width: 400px;
+   padding: 30px;
+ }
 
-.slider {
-padding: 10px;
+ .slider {
+  padding: 10px;
 }
 
 #slider-range {
 }
 
 .price-selector {
- 
+
 }
 
 #min-amount {
@@ -212,9 +326,9 @@ padding: 10px;
   box-shadow: 1px 1px 1px lightgrey;
 /*  border: 0;
 */  color: #f6931f;
-  font-size: 20px;
-  font-weight: bold;
-  z-index: -100;
+font-size: 20px;
+font-weight: bold;
+z-index: -100;
 
 }
 
@@ -251,7 +365,7 @@ padding: 10px;
 }
 
 @media only screen and (max-width: 600px) {
-    .slider-wrapper {
-        width: 300px;
-    }
+  .slider-wrapper {
+    width: 300px;
+  }
 }
