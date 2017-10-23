@@ -49,6 +49,8 @@ body {
     zoom: 1;
     font-weight: 600;
     color: #ffffff;
+    /*background: #e62e00;*/
+    /*background: #e60000;*/
     background: #f03d41;
     border-radius: 2px;
     font-size: 15px;
@@ -113,11 +115,15 @@ body {
   .border {
     padding: 15px;
     cursor: pointer;
+       border-radius: 5px;
+    border: 1px solid #E8E8E8;
+ /*   border: 1px solid #F0F0F0;
+    border: 1px solid whitesmoke;*/
   }
 
   .border:hover {
-    -webkit-box-shadow: 0 0 10px black;
-    box-shadow: 0 0 10px grey;
+    -webkit-box-shadow: 0 0 10px silver;
+    box-shadow: 0 0 10px silver;
   }
 
   .product-image-link {
@@ -157,7 +163,13 @@ body {
     font-size: 45px;
   }
 
-  #header-min-amount {
+   .coffee-title-small {
+    font-family: ExpressoCaffe;
+    color: white;
+    font-size: 25px;
+  }
+
+  #min-amount {
   float: left;
   position: relative;
   right: 75px;
@@ -165,16 +177,16 @@ body {
   text-align: center;
   border-radius: 5px;
   border: solid 1px lightgrey;
-  box-shadow: 1px 1px 1px lightgrey;
+  /*box-shadow: 1px 1px 1px lightgrey;*/
 /*  border: 0;
 */  color: #f6931f;
 font-size: 20px;
 font-weight: bold;
-z-index: -100;
+z-index: 100;
 
 }
 
-#header-max-amount {
+#max-amount {
   float: right;
   position: relative;
   left: 75px;
@@ -183,12 +195,12 @@ z-index: -100;
   text-align: center;
   border-radius: 5px;
   border: solid 1px lightgrey;
-  box-shadow: 1px 1px 1px lightgrey;
+  /*box-shadow: 1px 1px 1px lightgrey;*/
   /*border: 0;*/
   color: #f6931f;
   font-size: 20px;
   font-weight: bold;
-  z-index: -100;
+  z-index: 100;
 }
 
   /*product search*/
@@ -204,7 +216,7 @@ z-index: -100;
 
   #coffee-header-bottom {
     /*margin-top: -12px;*/
-    height: 50px;
+    height: 55px;
     padding-top: 8px;
     text-align: center;
     background-color: steelblue;
@@ -228,7 +240,7 @@ z-index: -100;
     background-color: #ffa31a;
     border: 1px solid #ffa31a;
     border-radius: 7px;
-    font-size: 17px;
+    font-size: 18px;
     color: white;
   }
 
@@ -245,12 +257,65 @@ z-index: -100;
     left: 0px;
   }
 
-  #header-price-slider {
-    display: none;
-    margin: 0 auto;
-     width: 400px;
-     padding: 30px;
+  #price-slider {
+    /*float: left;*/
+    /*margin: 0 auto;*/
+    position: absolute;
+    max-width: 500px;
+     width: 30%; 
+      top: 109px;
+     left: 88px;
+   }
+
+   #slider {
+   }
+
+  div.ui-slider-range.ui-widget-header {
+    background: gold;
+}
+
+/*#slider {
+  -webkit-slider-thumb: orange;
+}*/
+
+/*#slider::-webkit-slider-thumb {
+  background: orange;
+}
+*/
+   #filter-button-wrapper {
+    position: absolute;
+    top: 107px;
+    right: 5px;
+   }
+
+   .filter-button {
+    height: 35px;
+    width: 145px;
+    background-color: gold;
+    border: 1px solid gold;
+    border-radius: 7px;
+    font-size: 18px;
+    color: white;
+    line-height: 25px;
   }
+
+  .arrow-toggle-up {
+    color: green;
+  }
+
+  .arrow-toggle-down {
+    color: red;
+  }
+
+   }
+
+   .slider-maximized {
+  
+  }
+
+  .slider-minimized {
+
+}
 
   .header-price-filter {
 
@@ -315,7 +380,7 @@ z-index: -100;
 
 }
 
-#min-amount {
+/*#min-amount-old {
   float: left;
   position: relative;
   right: 75px;
@@ -323,16 +388,16 @@ z-index: -100;
   text-align: center;
   border-radius: 5px;
   border: solid 1px lightgrey;
-  box-shadow: 1px 1px 1px lightgrey;
+  box-shadow: 1px 1px 1px lightgrey;*/
 /*  border: 0;
-*/  color: #f6931f;
+  color: #f6931f;
 font-size: 20px;
 font-weight: bold;
 z-index: -100;
 
-}
+}*/
 
-#max-amount {
+/*#max-amount-old {
   float: right;
   position: relative;
   left: 75px;
@@ -341,15 +406,15 @@ z-index: -100;
   text-align: center;
   border-radius: 5px;
   border: solid 1px lightgrey;
-  box-shadow: 1px 1px 1px lightgrey;
+  box-shadow: 1px 1px 1px lightgrey;*/
   /*border: 0;*/
-  color: #f6931f;
+  /*color: #f6931f;
   font-size: 20px;
   font-weight: bold;
   z-index: -100;
-}
+}*/
 
-.update-price {
+/*.update-price {
   height: 45px;
   width: 235px;
   margin: 25px;
@@ -359,7 +424,7 @@ z-index: -100;
   font-size: 25px;
   color: white;
 }
-
+*/
 .update-price:hover {
   background-color: #0675A2;
 }
