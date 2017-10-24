@@ -1,29 +1,21 @@
-var app = angular.module('app', [])
+var app = angular.module('coffeeShop', [])
 
-// Filter for removing duplicate results when using ng-repeat.
+// Data
 
-app.filter('unique', function() {
 
- return function(collection, keyname) {
+app.factory('coffeeData', ['$http', function($http) { 
 
-  var output = [], 
-  keys = [];
+keyword = document.getElememtById("product-search-input").value;
 
-  angular.forEach(collection, function(item) {
+  return $http.get("http://uk.gomerchants.net/inc/demo.php?keyword=" + keyword) 
+            .success(function(data) { 
+              return data; 
+            }) 
+            .error(function(err) { 
+              return err; 
+            }); 
+}]);
 
-    var key = item[keyname];
-
-    if(keys.indexOf(key) === -1) {
-
-      keys.push(key); 
-
-      output.push(item);
-    }
-  });
-
-  return output;
-};
-});
 
 // Main controller
 
@@ -74,9 +66,9 @@ angular.element(document).ready(function() {
       var min = $("#slider").slider("values")[0];
       var max = $("#slider").slider("values")[1];
         // Make values non-linear
-        var nonLinearPriceMin = Math.easeIn(min, 0, 2001, 2.5);
-        var nonLinearPriceMax = Math.easeIn(max, 1, 2001, 2.5);
-        if (nonLinearPriceMax == 2001) {
+        var nonLinearPriceMin = Math.easeIn(min, 0, 2501, 2.5);
+        var nonLinearPriceMax = Math.easeIn(max, 1, 2501, 2.5);
+        if (nonLinearPriceMax == 2501) {
           return (coffeeItem.price_raw >= nonLinearPriceMin);
         } else {
           return (coffeeItem.price_raw >= nonLinearPriceMin) && (coffeeItem.price_raw <= nonLinearPriceMax);
@@ -94,7 +86,7 @@ angular.element(document).ready(function() {
   };
 
 
-  $( function() {
+  $(function() {
     $( "#slider" ).slider({
       change: function( event, ui) { var scope = angular.element($("#slider")).scope();
       scope.$apply(function() {
@@ -103,15 +95,15 @@ angular.element(document).ready(function() {
     },
     range: true,
     min: 0,
-    max: 2001,
-    values: [0, 2001],
+    max: 2501,
+    values: [0, 2501],
     slide: function( event, ui ) {
 
-      var nonLinearMin = Math.easeIn(ui.values[0], 0, 2001, 2.5);
-      var nonLinearMax = Math.easeIn(ui.values[1], 0, 2001, 2.5);
+      var nonLinearMin = Math.easeIn(ui.values[0], 0, 2501, 2.5);
+      var nonLinearMax = Math.easeIn(ui.values[1], 0, 2501, 2.5);
 
       $('#min-amount').val("$" + Math.round(nonLinearMin));      
-      if (ui.values[1] == 2001) {
+      if (ui.values[1] == 2501) {
         $("#max-amount").val("max")
       } else {
         $("#max-amount").val("$" + Math.round(nonLinearMax))
@@ -124,38 +116,60 @@ angular.element(document).ready(function() {
 
   });
 
-  $scope.categoryFilter = function(coffeeItem) {
-    var e = document.getElementById("category-dropdown-select")
-    return (e.options[e.selectedIndex].text)
-    function Ctrl($scope) {
-      $scope.items = [{
-        value: 'item_1_id',
-        text: 'Item 1'
-      }, {
-        value: 'item_2_id',
-        text: 'Item 2'
-      }];   
-    }
-};
+//   $scope.categoryFilter = function(coffeeItem) {
+//     var e = document.getElementById("category-dropdown-select")
+//     return (e.options[e.selectedIndex].text)
+//     function Ctrl($scope) {
+//       $scope.items = [{
+//         value: 'item_1_id',
+//         text: 'Item 1'
+//       }, {
+//         value: 'item_2_id',
+//         text: 'Item 2'
+//       }];   
+//     }
+// };
+
+$scope.categoryFilter = function(coffeeItem) {
+  return (coffeeItem.category.includes($(event.target).text()))
+}
+
 
 // Various data filters
 
 $scope.brandFilter = function(coffeeItem) {
-  return (document.getElementById("brand-option").value)
+  return (document.getElementById("brand-option").text)
 };
 
+// $scope.merchantFilter = function(coffeeItem) {
+//     return document.getElementById("merchant-" + coffeeItem[this.$index].id).text
+// };
+
 $scope.merchantFilter = function(coffeeItem) {
-  return (document.getElementById("merchant-option").value)
-};
+  return (coffeeItem.merchant.includes($(event.target).text()))
+}
+
+ $scope.getScope = function() {
+         return $scope;   
+    }
+
+
+// $scope.merchantFilter = function(coffeeItem) {
+//   return (document.getElementById("merchant-option").text)
+// };
+
+// $scope.merchantFilter = function() {
+//   $("#merchant-" + $scope.coffeeData[this.$index].id).text;
+// }
 
 // For highlighting names on hover
 
 $scope.nameHighlightEnter = function() {
-  $(".name-link-" + $scope.coffeeData[this.$index].id).css("color", "#f03d41");
+  $("#name-link-" + $scope.coffeeData[this.$index].id).css("color", "#f03d41");
 }
 
 $scope.nameHighlightLeave = function() {
-  $(".name-link-" + $scope.coffeeData[this.$index].id).css("color", "black");
+  $("#name-link-" + $scope.coffeeData[this.$index].id).css("color", "black");
 }
 
 // For only showings a certain number of items until user scrolls to bottom of the page
@@ -164,13 +178,38 @@ $scope.itemLimit = 20;
 angular.element(document).ready(function() {
   setTimeout(function() {
     $(window).scroll(function() {
-     if($(window).scrollTop() + $(window).height() > ($(document).height() - 100)) {
+     if($(window).scrollTop() + $(window).height() == ($(document).height())) {
        $scope.itemLimit = $scope.itemLimit + 20;
      }
    })
   },100)
 })
 })
+
+// Filter for removing duplicate results when using ng-repeat.
+
+app.filter('unique', function() {
+
+ return function(collection, keyname) {
+
+  var output = [], 
+  keys = [];
+
+  angular.forEach(collection, function(item) {
+
+    var key = item[keyname];
+
+    if(keys.indexOf(key) === -1) {
+
+      keys.push(key); 
+
+      output.push(item);
+    }
+  });
+
+  return output;
+};
+});
 
 // Events triggered as user scrolls down
 
@@ -189,7 +228,7 @@ window.onscroll = function() {
     headerBottom.classList.add("search-fixed")
     minimizeHeader.style.paddingBottom = "50px";
     // priceSlider.style.position = "fixed";
-    priceSlider.style.top = "7.5px";
+    priceSlider.style.top = "9px";
 
     // priceSlider.classList.add("slider-minimized")
     // priceSlider.classList.remove("slider-maximized")

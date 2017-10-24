@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>Weebo Project</title>
+	<title>Coffee Shop</title>
 
 	<!-- style -->
 	<link rel="stylesheet/less" type="text/css" href="weebo-demo.less"/>
@@ -18,6 +18,8 @@
 
 	<!-- bootstrap -->
 	<link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" >
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 
 
@@ -37,10 +39,9 @@
 
 </head>
 
-<body ng-app="app">
+<body ng-app="coffeeShop">
 				 	
 <div class="coffee-controller" ng-controller="CoffeeController">
-
 
 
 		<div class="coffee-header-wrapper">
@@ -51,10 +52,11 @@
 		</nav>
 				<div id="minimize-header"></div>
 		<nav id="coffee-header-bottom">
+			<div class="slider-search">
 			<div id="price-slider">
-				 				<div><input type="text" id="min-amount" readonly ng-model="slider" ng-change="change()" contenteditable="true""></div>
-				 				<div class="slider"><div id="slider"></div></div>
-				 				<div><input type="text" id="max-amount" readonly"></div>
+				 				<div><input type="text" id="min-amount"></div>
+				 				<div class="slider-wrapper"><div id="slider"></div></div>
+				 				<div><input type="text" id="max-amount" readonly></div>
 <!-- 				 				<button class="update-price" ng-click="filterType = priceFilter">Update Price</button>
  -->				 			</div>
 		<!-- 	<div id="header-price-slider">
@@ -69,6 +71,7 @@
 							<input type="submit" class="product-search-button" value="Search">
 						</form>
 					</div>
+				</div>
 					<!-- <div class="coffee-title-small">Coffee Shop</div> -->
 						<div id="filter-button-wrapper">
 						<button class="filter-button" ng-click="sortType = ''; sortReverse = !sortReverse; popularityButtonToggle = !popularityButtonToggle">
@@ -77,7 +80,11 @@
 						</button>
 						<button class="filter-button" ng-click="sortType = 'price_raw'; sortReverse = !sortReverse; priceButtonToggle = !priceButtonToggle">
 							<span ng-show="priceButtonToggle">Price <span class="arrow-toggle-down">&#9660;</span></span>
-   							<span ng-hide="priceButtonToggle">Price <span class="arrow-toggle-up">&#9650;</span></span></button>
+   							<span ng-hide="priceButtonToggle">Price <span class="arrow-toggle-up">&#9650;</span></span>
+   						</button>
+   							<button class="filter-button reset-button" ng-click="sortType = ''">
+							<span>Reset</span>
+   						</button>
    						</div>
 
 				</nav>
@@ -102,22 +109,25 @@
 
 						<div class="filter-search-wrapper">
 							<form class="filter-search-form">
-						<input id="filter-search-input" placeholder="search results"><button class="search-filter" ng-click="filterType = searchFilter">Search</button>
+						<input id="filter-search-input" placeholder="Filter results">
+						<button class="filter-search-button fa fa-search fa-lg" ng-click="filterType = searchFilter"></button>
 						</form>
 						</div>
-
+						<div class="sidebar-list">
 						<div class="sidebar-title">Categories</div>
-						<div class="categories" ng-repeat="coffeeItem in coffeeData | unique: 'category'"">
-							<div>{{coffeeItem.category}}</div>
+						<div class="categories filter" ng-repeat="coffeeItem in coffeeData | unique: 'category'">
+							<!-- <a id="category-{{coffeeItem.id}}" class="filter-link" ng-click="getScope().filterType = categoryFilter"> {{coffeeItem.category}}</a> -->
 						</div>
 						<div class="sidebar-title">Brands</div>
-						<div class="brands" ng-repeat="coffeeItem in coffeeData | unique: 'brand'">
-							{{coffeeItem.brand}}
+						<div class="brands filter" ng-repeat="coffeeItem in coffeeData | unique: 'brand'">
+							<a id="brand-{{coffeeItem.id}}" class="filter-link" ng-click="getScope().filterType = brandFilter">{{coffeeItem.brand}}</a>
 						</div>
 						<div class="sidebar-title">Merchants</div>
-						<div class="merchants" ng-repeat="coffeeItem in coffeeData | unique: 'merchant'">
-							<div>{{coffeeItem.merchant}}</div>
+						<div class="merchant filter" ng-repeat="coffeeItem in coffeeData | unique: 'merchant'">
+							<a id="merchant-{{coffeeItem.id}}" class="filter-link" ng-click="getScope().filterType = merchantFilter">{{coffeeItem.merchant}}</a>
 						</div>
+						</div>
+
 				 		<!-- <p> -->
 				 			<!-- <label for="amount">Price range:</label> -->
 				 			<!-- <input type="text" id="min-amount" readonly style="border:0; color:#f6931f; font-weight:bold;"> -->
@@ -203,7 +213,7 @@
 
 					</div>		
 					<div class="results">
-					<div class="coffee-data-list" ng-repeat="coffeeItem in coffeeData | orderBy:sortType:!sortReverse | filter: filterType | limitTo: itemLimit" >
+					<div class="coffee-data-list" ng-repeat="coffeeItem in coffeeData | orderBy:sortType:!sortReverse | filter: filterType" | limitTo: itemLimit" >
 						<div class="column">
 							<div ng-mouseenter="nameHighlightEnter()" ng-mouseleave="nameHighlightLeave()" class="border">
 								<div class="coffee-item">
@@ -219,7 +229,7 @@
 										</div>
 										<div class="text">
 											<div class="display-name">
-												<a class="name-link name-link-{{coffeeItem.id}}" href="{{coffeeItem.url}}">{{coffeeItem.name}}</a>
+												<a id="name-link name-link-{{coffeeItem.id}}" href="{{coffeeItem.url}}">{{coffeeItem.name}}</a>
 											</div>
 											<div class="brand">{{coffeeItem.brand}}</div>
 											<div>{{coffeeItem.merchant}}</div>

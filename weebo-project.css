@@ -14,23 +14,24 @@ body {
   }
 
   .grid-container {
-    display: block;
-    margin: 0 auto;
+     display: -webkit-flex;
+    display: flex;
+    /*margin: 0 auto;*/
     width: 95%;
     /*max-width: 1366px;*/
     text-align: center;
   }
 
   .results {
-    width: 85%;
+    width: 80%;
     float: right;
-
+    margin: 0 auto;
   }
 
   .column {
     float: left;
     height: 300px;
-    margin-top: 50px;
+    margin-top: 30px;
     width: 321px;
     padding: 10px;
   }
@@ -115,34 +116,34 @@ body {
   .border {
     padding: 15px;
     cursor: pointer;
-       border-radius: 5px;
+    border-radius: 5px;
     border: 1px solid #E8E8E8;
  /*   border: 1px solid #F0F0F0;
-    border: 1px solid whitesmoke;*/
-  }
+ border: 1px solid whitesmoke;*/
+}
 
-  .border:hover {
-    -webkit-box-shadow: 0 0 10px silver;
-    box-shadow: 0 0 10px silver;
-  }
+.border:hover {
+  -webkit-box-shadow: 0 0 10px silver;
+  box-shadow: 0 0 10px silver;
+}
 
-  .product-image-link {
-    display: block;
-    text-align: center;
-    margin: 0 auto;
-  }
+.product-image-link {
+  display: block;
+  text-align: center;
+  margin: 0 auto;
+}
 
-  .price {
-    float: right;
-  }
+.price {
+  float: right;
+}
 
-  .merchant-logo {
-    float: left;
-  }
+.merchant-logo {
+  float: left;
+}
 
-  /*header*/
+/*header*/
 
-  #coffee-header-top {
+#coffee-header-top {
 /*    position: relative;
     left: 0px;
     top: 0px;*/
@@ -163,45 +164,11 @@ body {
     font-size: 45px;
   }
 
-   .coffee-title-small {
+  .coffee-title-small {
     font-family: ExpressoCaffe;
     color: white;
     font-size: 25px;
   }
-
-  #min-amount {
-  float: left;
-  position: relative;
-  right: 75px;
-  width: 65px;
-  text-align: center;
-  border-radius: 5px;
-  border: solid 1px lightgrey;
-  /*box-shadow: 1px 1px 1px lightgrey;*/
-/*  border: 0;
-*/  color: #f6931f;
-font-size: 20px;
-font-weight: bold;
-z-index: 100;
-
-}
-
-#max-amount {
-  float: right;
-  position: relative;
-  left: 75px;
-  bottom: 31px;
-  width: 65px;
-  text-align: center;
-  border-radius: 5px;
-  border: solid 1px lightgrey;
-  /*box-shadow: 1px 1px 1px lightgrey;*/
-  /*border: 0;*/
-  color: #f6931f;
-  font-size: 20px;
-  font-weight: bold;
-  z-index: 100;
-}
 
   /*product search*/
 
@@ -217,7 +184,7 @@ z-index: 100;
   #coffee-header-bottom {
     /*margin-top: -12px;*/
     height: 55px;
-    padding-top: 8px;
+    padding-top: 10px;
     text-align: center;
     background-color: steelblue;
     z-index: 100;
@@ -257,147 +224,43 @@ z-index: 100;
     left: 0px;
   }
 
+
   #price-slider {
     /*float: left;*/
     /*margin: 0 auto;*/
     position: absolute;
-    max-width: 500px;
-     width: 30%; 
-      top: 109px;
-     left: 88px;
-   }
-
-   #slider {
-   }
-
-  div.ui-slider-range.ui-widget-header {
-    background: gold;
-}
-
-/*#slider {
-  -webkit-slider-thumb: orange;
-}*/
-
-/*#slider::-webkit-slider-thumb {
-  background: orange;
-}
-*/
-   #filter-button-wrapper {
-    position: absolute;
-    top: 107px;
-    right: 5px;
-   }
-
-   .filter-button {
-    height: 35px;
-    width: 145px;
-    background-color: gold;
-    border: 1px solid gold;
-    border-radius: 7px;
-    font-size: 18px;
-    color: white;
-    line-height: 25px;
+    max-width: 575px;
+    width: 46%;
+    margin-right: 20%; 
+    top: 112px;
+    left: 95px;
   }
-
-  .arrow-toggle-up {
-    color: green;
-  }
-
-  .arrow-toggle-down {
-    color: red;
-  }
-
-   }
-
-   .slider-maximized {
-  
-  }
-
-  .slider-minimized {
-
-}
-
-  .header-price-filter {
-
-  }
-
-  .header-popularity-filter {
-
-  }
-
-
-  /*custom fonts*/
-
-  @font-face {
-    font-family: "ExpressoCaffe";
-    src: url("fonts/Channel.ttf");
-  }
-
-  /*sidebar*/
-
-  .sidebar {
-    float: left;
-    width: 15%;
-    text-align: left;
-  }
-
-  .filters {
-    position: fixed;
-    background-color: grey;
-  }
-
-  .sidebar-title {
-    font-weight: bold;
-  }
-
-  /*footer*/
-
-  .footer-wrapper {
-    position: fixed;
-    bottom: 0px;
-    left: 0px;
-    width: 100%;
-    height: 75px;
-    background-color: steelblue;
-  }
-
-  /*price slider*/
 
   .slider-wrapper {
-   margin: 0 auto;
-   width: 400px;
-   padding: 30px;
- }
+    padding: 10px;
+  }
+  
+  #slider {
+  }
 
- .slider {
-  padding: 10px;
-}
-
-#slider-range {
-}
-
-.price-selector {
-
-}
-
-/*#min-amount-old {
-  float: left;
-  position: relative;
-  right: 75px;
-  width: 65px;
-  text-align: center;
-  border-radius: 5px;
-  border: solid 1px lightgrey;
-  box-shadow: 1px 1px 1px lightgrey;*/
+  #min-amount {
+    float: left;
+    position: relative;
+    right: 75px;
+    width: 65px;
+    text-align: center;
+    border-radius: 5px;
+    border: solid 1px lightgrey;
+    /*box-shadow: 1px 1px 1px lightgrey;*/
 /*  border: 0;
-  color: #f6931f;
+*/  color: #f6931f;
 font-size: 20px;
 font-weight: bold;
-z-index: -100;
+z-index: 100;
 
-}*/
+}
 
-/*#max-amount-old {
+#max-amount {
   float: right;
   position: relative;
   left: 75px;
@@ -406,27 +269,192 @@ z-index: -100;
   text-align: center;
   border-radius: 5px;
   border: solid 1px lightgrey;
-  box-shadow: 1px 1px 1px lightgrey;*/
+  /*box-shadow: 1px 1px 1px lightgrey;*/
   /*border: 0;*/
-  /*color: #f6931f;
+  color: #f6931f;
   font-size: 20px;
   font-weight: bold;
-  z-index: -100;
-}*/
+  z-index: 100;
+}
 
-/*.update-price {
-  height: 45px;
-  width: 235px;
-  margin: 25px;
-  background-color: #0a92ca;
-  border: 1px solid #0a92ca;
-  border-radius: 1000px;
-  font-size: 25px;
-  color: white;
+
+div.ui-slider-range.ui-widget-header {
+  background: gold;
+}
+
+/*#slider {
+  -webkit-slider-thumb: orange;
+  }*/
+
+/*#slider::-webkit-slider-thumb {
+  background: orange;
 }
 */
+#filter-button-wrapper {
+  position: absolute;
+  top: 110px;
+  right: 20px;
+}
+
+.filter-button {
+  height: 35px;
+  width: 145px;
+  background-color: gold;
+  border: 1px solid gold;
+  border-radius: 7px;
+  font-size: 18px;
+  color: white;
+  line-height: 25px;
+}
+
+.arrow-toggle-up {
+  color: green;
+}
+
+.arrow-toggle-down {
+  color: red;
+}
+
+.reset-button {
+  background: #f03d41;
+  border: solid 1px #f03d41;;
+}
+
+.reset-button:hover {
+  background: #D4292D;
+  border: solid 1px #D4292D;
+}
+
+.slider-maximized {
+
+}
+
+.slider-minimized {
+
+}
+
+.header-price-filter {
+
+}
+
+.header-popularity-filter {
+
+}
+
+
+/*custom fonts*/
+
+@font-face {
+  font-family: "ExpressoCaffe";
+  src: url("fonts/Channel.ttf");
+}
+
+/*sidebar*/
+.sidebar {
+  float: left;
+  width: 20%;
+  text-align: left;
+  margin-top: 39px;
+}
+
+#filter-search-wrapper {
+  
+}
+
+#filter-search-input {
+  width: 285px;
+  height: 35px;
+  font-size: 16px;
+  border: solid lightgrey 1px;
+  background-color: white;
+  border-radius: 7px;
+  padding-left: 15px;
+}
+
+.filter-search-button {
+  height: 35px;
+  width: 35px;
+  background-color: silver;
+  border: 1px solid silver;
+  border-radius: 7px;
+  color: white;
+  position: relative;
+  bottom: 2px;
+}
+
+.filter-search-button:hover {
+  background-color: #A0A0A0;
+  border: 1px solid #A0A0A0;
+}
+
+
+.filters {
+  padding: 25px;
+  position: fixed;
+  background-color: grey;
+}
+
+.sidebar-list {
+  margin-top: 20px;
+}
+
+.sidebar-title {
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 50px;
+}
+
+.brands {
+
+}
+
+.merchants {
+
+}
+
+.categories {
+
+}
+
+.filter-link {
+  color: black;
+  cursor: pointer;
+  font-size: 16px;
+  line-height: 25px;
+}
+
+.filter-link:hover {
+  color: #f6931f;
+  text-decoration: none;
+}
+
+/*footer*/
+
+.footer-wrapper {
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+  width: 100%;
+  height: 75px;
+  background-color: steelblue;
+}
+
 .update-price:hover {
   background-color: #0675A2;
+}
+
+/*media queries*/
+
+@media only screen and (max-width: 1440px) {
+  #price-slider {
+    width: 335px;
+  }
+}
+
+@media only screen and (max-width: 1323px) {
+  .filter-button {
+    width: 25%;
+  }
 }
 
 @media only screen and (max-width: 600px) {
