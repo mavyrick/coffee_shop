@@ -6,7 +6,6 @@
 
 	<!-- style -->
 	<link rel="stylesheet/less" type="text/css" href="weebo-demo.less"/>
-	<!-- <script src="less.js" type="text/javascript"></script> -->
 
 	<link rel="stylesheet" type="text/css" href="weebo-project.css">
 
@@ -21,137 +20,84 @@
 
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-
-
-	<!-- slider files -->
-<!-- 	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-	<link rel="stylesheet" href="/resources/demos/style.css">
-	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> -->
 	<link rel="stylesheet" href="slider/jquery-ui/jquery-ui.min.css">
-	<!-- <script src="slider/jquery-ui/external/jquery/jquery.js"></script> -->
 	<script src="slider/jquery-ui/jquery-ui.min.js"></script>
 
 	<!-- project javascript -->
 	<script type="text/javascript" src="weebo-project.js"></script>
 	<script type="text/javascript" src="coffee-data.js"></script>
-	<!-- <script type="text/javascript" src="pagination/paging.js"></script> -->
 
 </head>
 
-<body ng-app="coffeeShop">
-				 	
-<div class="coffee-controller" ng-controller="CoffeeController">
 
+<body ng-app="app" ng-controller="CoffeeController">
 
-		<div class="coffee-header-wrapper">
-		<nav id="coffee-header-top">
+	<div class="coffee-header-wrapper">
+		<div id="coffee-header-top">
 			<div class="coffee-header-content">
 				<div class="coffee-title">Coffee Shop</div>
 			</div>
-		</nav>
-				<div id="minimize-header"></div>
-		<nav id="coffee-header-bottom">
-			<div class="slider-search">
-			<div id="price-slider">
-				 				<div><input type="text" id="min-amount"></div>
-				 				<div class="slider-wrapper"><div id="slider"></div></div>
-				 				<div><input type="text" id="max-amount" readonly></div>
-<!-- 				 				<button class="update-price" ng-click="filterType = priceFilter">Update Price</button>
- -->				 			</div>
-		<!-- 	<div id="header-price-slider">
-				 				<div><input type="text" id="header-min-amount" readonly"></div>
-				 				<div class="slider"><div id="header-slider-range"></div></div>
-				 				<div><input type="text" id="header-max-amount" readonly"></div> -->
-				 				<!-- <button class="update-price" ng-click="filterType = priceFilter">Update Price</button>
-				 			</div> -->
-				<div id="product-search-wrapper">
-						<form class="product-search-form" ng-submit="productSearch()">
-							<input id="product-search-input" placeholder="Search a product">
-							<input type="submit" class="product-search-button" value="Search">
-						</form>
-					</div>
-				</div>
-					<!-- <div class="coffee-title-small">Coffee Shop</div> -->
-						<div id="filter-button-wrapper">
-						<button class="filter-button" ng-click="sortType = ''; sortReverse = !sortReverse; popularityButtonToggle = !popularityButtonToggle">
-							<span ng-show="popularityButtonToggle">Popularity <span class="arrow-toggle-up">&#9650;</span></span>
-    						<span ng-hide="popularityButtonToggle">Popularity <span class="arrow-toggle-down">&#9660;</span></span>
-						</button>
-						<button class="filter-button" ng-click="sortType = 'price_raw'; sortReverse = !sortReverse; priceButtonToggle = !priceButtonToggle">
-							<span ng-show="priceButtonToggle">Price <span class="arrow-toggle-down">&#9660;</span></span>
-   							<span ng-hide="priceButtonToggle">Price <span class="arrow-toggle-up">&#9650;</span></span>
-   						</button>
-   							<button class="filter-button reset-button" ng-click="sortType = ''">
-							<span>Reset</span>
-   						</button>
-   						</div>
-
-				</nav>
 		</div>
+		<div id="minimize-header"></div>
 
-		
-
-				 <div class="grid-container">
-
-						
-						<!-- <div class="slider-wrapper"> -->
-				 				<!-- <div><input type="text" id="min-amount" readonly ng-model="slider" ng-change="change()" contenteditable="true""></div> -->
-				 				<!-- <div class="slider"><div id="slider-range"></div></div> -->
-				 				<!-- <div><input type="text" id="max-amount" readonly"></div> -->
-<!-- 				 				<button class="update-price" ng-click="filterType = priceFilter">Update Price</button>
- -->				 			<!-- </div> -->
+		<div id="coffee-header-bottom">
+			<div class="outer">
+				<!-- <div class="inner"> -->
+					<!-- <div id="price-slider" class="header-items slider-position"> -->
+						<input type="text" id="min-amount" class="header-items min-display header-items" readonly>
+						<div id="slider" class="slider-display header-items"></div>
+						<input type="text" id="max-amount" class="header-items max-display header-items" readonly>
+						<!-- </div> -->
+						<div id="product-search-wrapper" class="header-items search-display">
+							<form class="product-search-form" ng-submit="productSearch()">
+								<input id="product-search-input" class="input-position" placeholder="Search a product">
+								<input type="submit" class="product-search-button" value="Search">
+							</form>
+						</div>
+						<!-- <div id="filter-button-wrapper" class="header-items button-wrapper-position"> -->
+							<button class="header-items filter-button button-display" id="popularity" ng-click="sortType = ''; sortReverse = !sortReverse; popularityButtonToggle = !popularityButtonToggle">
+								<span ng-show="popularityButtonToggle"><span class="pop-text">Popularity </span><span class="arrow-toggle-up">&#9650;</span></span>
+								<span ng-hide="popularityButtonToggle"><span class="pop-text">Popularity </span><span class="arrow-toggle-down">&#9660;</span></span>
+							</button>
+							<button class="header-items filter-button button-display" id="price" ng-click="sortType = 'price_raw'; sortReverse = !sortReverse; priceButtonToggle = !priceButtonToggle">
+								<span ng-show="priceButtonToggle">Price <span class="arrow-toggle-down">&#9660;</span></span>
+								<span ng-hide="priceButtonToggle">Price <span class="arrow-toggle-up">&#9650;</span></span>
+							</button>
+							<button class="header-items filter-button reset-button button-display" ng-click="sortType = ''">
+								<span>Reset</span>
+							</button>
+							<!-- </div> -->
+							<!-- </div> -->
+						</div>
+					</div>
 					
-
-   							<div id="filter-display"></div>
+				</div>
+				<div class="grid-container">
+					<div id="filter-display"></div>
 
 					<div class="sidebar">
 
 						<div class="filter-search-wrapper">
 							<form class="filter-search-form">
-						<input id="filter-search-input" placeholder="Filter results">
-						<button class="filter-search-button fa fa-search fa-lg" ng-click="filterType = searchFilter"></button>
-						</form>
+								<input id="filter-search-input" placeholder="Filter results">
+								<button class="filter-search-button fa fa-search fa-lg" ng-click="filterType = searchFilter"></button>
+							</form>
 						</div>
 						<div class="sidebar-list">
-						<div class="sidebar-title">Categories</div>
-						<div class="categories filter" ng-repeat="coffeeItem in coffeeData | unique: 'category'">
-							<!-- <a id="category-{{coffeeItem.id}}" class="filter-link" ng-click="getScope().filterType = categoryFilter"> {{coffeeItem.category}}</a> -->
-						</div>
-						<div class="sidebar-title">Brands</div>
-						<div class="brands filter" ng-repeat="coffeeItem in coffeeData | unique: 'brand'">
-							<a id="brand-{{coffeeItem.id}}" class="filter-link" ng-click="getScope().filterType = brandFilter">{{coffeeItem.brand}}</a>
-						</div>
-						<div class="sidebar-title">Merchants</div>
-						<div class="merchant filter" ng-repeat="coffeeItem in coffeeData | unique: 'merchant'">
-							<a id="merchant-{{coffeeItem.id}}" class="filter-link" ng-click="getScope().filterType = merchantFilter">{{coffeeItem.merchant}}</a>
-						</div>
+							<div class="sidebar-title">Categories</div>
+							<div class="categories filter" ng-repeat="coffeeItem in coffeeData | unique: 'category'">
+								<!-- <a id="category-{{coffeeItem.id}}" class="filter-link" ng-click="getScope().filterType = categoryFilter"> {{coffeeItem.category}}</a> -->
+							</div>
+							<div class="sidebar-title">Brands</div>
+							<div class="brands filter" ng-repeat="coffeeItem in coffeeData | unique: 'brand'">
+								<a id="brand-{{coffeeItem.id}}" class="filter-link" ng-click="getScope().filterType = brandFilter">{{coffeeItem.brand}}</a>
+							</div>
+							<div class="sidebar-title">Merchants</div>
+							<div class="merchant filter" ng-repeat="coffeeItem in coffeeData | unique: 'merchant'">
+								<a id="merchant-{{coffeeItem.id}}" class="filter-link" ng-click="getScope().filterType = merchantFilter">{{coffeeItem.merchant}}</a>
+							</div>
 						</div>
 
-				 		<!-- <p> -->
-				 			<!-- <label for="amount">Price range:</label> -->
-				 			<!-- <input type="text" id="min-amount" readonly style="border:0; color:#f6931f; font-weight:bold;"> -->
-				 			<!-- <input type="text" id="max-amount" readonly style="border:0; color:#f6931f; font-weight:bold;"> -->
-
-				 			<!-- </p> -->
-				 			<!-- <div class="slider-wrapper">
-				 				<div><input type="text" id="min-amount" readonly"></div>
-				 				<div class="slider"><div id="slider-range"></div></div>
-				 				<div><input type="text" id="max-amount" readonly"></div>
-				 				<button class="update-price" ng-click="filterType = priceFilter">Update Price</button>
-				 			</div> -->
-
-
-				 			<!-- <div>{{sliderValues[1]}}</div> -->
-				 			<!-- <div ng-click="maxPrice = sliderValues[1]">Display Price</div> -->
-				 			<!-- <div>{{maxPrice}}</div> -->
-				<!-- 		<button ng-click="sortType = ''; sortReverse = !sortReverse">Popularity</button><button ng-click="sortType = 'price_raw'; sortReverse = !sortReverse">Price</button>
-						<div class-="filter-search-wrapper">
-						<form class="filter-search-form">
-							<! <label class="search-label"s></label> -->
-						<!-- 	<input id="filter-search-input" placeholder="search..."><button class="search-filter" ng-click="filterType = searchFilter">Search</button>
-						</form>
-					</div> -->
 					<!-- <select ng-model="selectedName" ng-options="coffeeItem.category for coffeeItem in coffeeData | unique: 'category">
 						<option value="" disabled selected>Category</option>
 					</select>	 -->	
@@ -187,7 +133,7 @@
 						</form>
 					</div> -->
 
-						<!-- <div class="filters"> -->
+					<!-- <div class="filters"> -->
 
 						<!-- <div class="sidebar-title">Filters</div>
 						<div class="filter-search-wrapper">
@@ -195,83 +141,43 @@
 						<input id="filter-search-input" placeholder="search results"><button class="search-filter" ng-click="filterType = searchFilter">Search</button>
 						</form>
 						</div>
-						<div class="slider-wrapper">
-				 				<div><input type="text" id="min-amount" readonly"></div>
-				 				<div class="slider"><div id="slider-range"></div></div>
-				 				<div><input type="text" id="max-amount" readonly"></div>
-				 				<button class="update-price" ng-click="filterType = priceFilter">Update Price</button>
-				 			</div>
-						<button ng-click="sortType = ''; sortReverse = !sortReverse; popularityButtonToggle = !popularityButtonToggle">
-							<span ng-show="popularityButtonToggle">Lowest Popularity</span>
-    						<span ng-hide="popularityButtonToggle">Highest Popularity</span>
-						</button>
-						<button ng-click="sortType = 'price_raw'; sortReverse = !sortReverse; priceButtonToggle = !priceButtonToggle">
-							<span ng-show="priceButtonToggle">Highest Price</span>
-   							<span ng-hide="priceButtonToggle">Lowest Price</span></button> -->
-						<!-- </div> -->
-
+				
+						<!- </div> -->
 
 					</div>		
 					<div class="results">
-					<div class="coffee-data-list" ng-repeat="coffeeItem in coffeeData | orderBy:sortType:!sortReverse | filter: filterType" | limitTo: itemLimit" >
-						<div class="column">
-							<div ng-mouseenter="nameHighlightEnter()" ng-mouseleave="nameHighlightLeave()" class="border">
-								<div class="coffee-item">
-									<a href="{{coffeeItem.url}}">
-										<div class="logo-price">
-											<img class="merchant-logo" src="{{coffeeItem.merchant_logo}}">
-											<div class="price">{{coffeeItem.price}}</div>
-										</div>
-										<br>
-										<br>
-										<div class="coffee-image-wrapper">
-											<img src="{{coffeeItem.image}}" class="coffee-item-image">
-										</div>
-										<div class="text">
-											<div class="display-name">
-												<a id="name-link name-link-{{coffeeItem.id}}" href="{{coffeeItem.url}}">{{coffeeItem.name}}</a>
+						<div class="coffee-data-list" ng-repeat="coffeeItem in coffeeData | orderBy:sortType:!sortReverse | filter: filterType" | limitTo: itemLimit" >
+							<div class="column">
+								<div ng-mouseenter="nameHighlightEnter()" ng-mouseleave="nameHighlightLeave()" class="border">
+									<div class="coffee-item">
+										<a href="{{coffeeItem.url}}">
+											<div class="logo-price">
+												<img class="merchant-logo" src="{{coffeeItem.merchant_logo}}">
+												<div class="price">{{coffeeItem.price}}</div>
 											</div>
-											<div class="brand">{{coffeeItem.brand}}</div>
-											<div>{{coffeeItem.merchant}}</div>
-											<div class="add-to-cart">
-												<button class="button" type="submit">Add to cart</button>
-												<!-- </form> -->
+											<br>
+											<br>
+											<div class="coffee-image-wrapper">
+												<img src="{{coffeeItem.image}}" class="coffee-item-image">
 											</div>
-										</a>
+											<div class="text">
+												<div class="display-name">
+													<a id="name-link name-link-{{coffeeItem.id}}" href="{{coffeeItem.url}}">{{coffeeItem.name}}</a>
+												</div>
+												<div class="brand">{{coffeeItem.brand}}</div>
+												<div>{{coffeeItem.merchant}}</div>
+												<div class="add-to-cart">
+													<button class="button" type="submit">Add to cart</button>
+													<!-- </form> -->
+												</div>
+											</a>
+										</div>
 									</div>
+									<!-- </div> -->
 								</div>
-								<!-- </div> -->
 							</div>
 						</div>
-					</div>
-
-					<!-- <div class="footer-wrapper">
-						<nav class="footer">
-						</nav>
-					</div> -->
-
-
 					</div>					
-				</div> 
-  <!-- <div class="search" ng-controller="SearchController">
-  	<div class="coffee-list" ng-repeat="coffeeItem in coffeeData">
-    <div>{{coffeeItem.name}}</div>
-    <div>{{coffeeItem.price}}</div>
-    <div>{{coffeeItem.description}}</div>
-    <div>{{coffeeItem.brand}}</div>
-    <div>{{coffeeItem.merchant}}</div>
-    <a href="{{coffeeItem.url}}">{{coffee.name}}</a>
-  	<img src="{{coffeeItem.merchant_logo}}">
-  	<img src="{{coffeeItem.image}}">
-  </div>
-  <div>{{coffeeData}}</div>
-</div> -->
 
-
-
-<!-- <script type="text/javascript" src="slider/nouislider.js"></script> -->
-<!-- <script src="//cdn.bootcss.com/noUiSlider/8.5.1/nouislider.js"></script>	 -->
-
-
-</body>
-</html>
+				</body>
+				</html>

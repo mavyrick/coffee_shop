@@ -1,44 +1,63 @@
-var app = angular.module('coffeeShop', [])
+var app = angular.module('app', [])
 
-// Data
+// Data factory
 
+app.factory('CoffeeData', function($http) { 
 
-app.factory('coffeeData', ['$http', function($http) { 
+  var coffeeSearch = []
 
-keyword = document.getElememtById("product-search-input").value;
+  coffeeSearch.getData = function(keyword) {
+    return $http.get("http://uk.gomerchants.net/inc/demo.php?keyword=" + keyword);
+  }
+  return coffeeSearch
 
-  return $http.get("http://uk.gomerchants.net/inc/demo.php?keyword=" + keyword) 
-            .success(function(data) { 
-              return data; 
-            }) 
-            .error(function(err) { 
-              return err; 
-            }); 
-}]);
+});
+
+// app.controller('ProductSearchController', ['$scope', 'CoffeeData', function($scope, CoffeeData) {
+
+//   $scope.productSearch = function() {
+//     var keyword = document.getElementById("product-search-input").value
+//     CoffeeData.getData(keyword).then(function(test) {
+//       console.log(test)
+//       return test
+//     })
+//   }
+
+// //  $scope.productSearch = function() {
+// // var keyword = document.getElementById("product-search-input").value
+// //   CoffeeData.getData().then(function(response) {
+// //       return response.data;
+// //     });
+// // }
+
+// }])
 
 
 // Main controller
 
-app.controller('CoffeeController', function($scope, $http) {
+app.controller('CoffeeController', ['$scope', 'CoffeeData', function($scope, CoffeeData) {
 
-  $scope.coffeeData = [];
-
-  $scope.productSearch = function () {
-    $scope.keyword = document.getElementById("product-search-input").value;
-
-    $http({
-      method: "GET",
-      url: "http://uk.gomerchants.net/inc/demo.php?keyword=" + $scope.keyword,
-    }).then(function mySuccess(response) {
+$scope.productSearch = function() {
+    var keyword = document.getElementById("product-search-input").value
+    CoffeeData.getData(keyword).then(function(response) {
+    //   if (response.data != undefined) {
       $scope.coffeeData = response.data;
-    }, function myError(response) {
-      $scope.coffeeData = response.statusText;
-    });
+    // } else {
+    //   $scope.coffeeData = []
+    })
+    // } else {
+    //     document.getElementById("no-results").style.visibility = "hidden";
+    // }
   }
+
+  // .then(function() {
+  //     console.log($scope.coffeeData.length)
+  //       if ($scope.coffeeData.length == 0) {
+  //     document.getElementById("no-results").style.visibility = "visible";
 
   // For selecting how something is sorted.
 
-  $scope.sortType = "";
+  $scope.sortType = {};
 
 // For selecting how something is filtered.
 
@@ -56,7 +75,6 @@ $scope.searchFilter = function(coffeeItem) {
 // Lower numbers will slide slower and higher numbers will slide faster.
 // This makes it much easier to choose a price range as lower prices are more likely to be selected and usually more particular.
 // Slider also makes far right slide position maximum price.
-// -Josh
 
 $scope.priceFilter = ""
 angular.element(document).ready(function() {
@@ -85,7 +103,6 @@ angular.element(document).ready(function() {
     return (max-1)*Math.pow(val, strength) + min;
   };
 
-
   $(function() {
     $( "#slider" ).slider({
       change: function( event, ui) { var scope = angular.element($("#slider")).scope();
@@ -113,7 +130,6 @@ angular.element(document).ready(function() {
     $( "#min-amount" ).val( "$" + $( "#slider" ).slider( "values", 0 ));
 
     $("#max-amount").val("max");
-
   });
 
 //   $scope.categoryFilter = function(coffeeItem) {
@@ -130,12 +146,10 @@ angular.element(document).ready(function() {
 //     }
 // };
 
+// Various data filters
 $scope.categoryFilter = function(coffeeItem) {
   return (coffeeItem.category.includes($(event.target).text()))
 }
-
-
-// Various data filters
 
 $scope.brandFilter = function(coffeeItem) {
   return (document.getElementById("brand-option").text)
@@ -149,10 +163,9 @@ $scope.merchantFilter = function(coffeeItem) {
   return (coffeeItem.merchant.includes($(event.target).text()))
 }
 
- $scope.getScope = function() {
-         return $scope;   
-    }
-
+$scope.getScope = function() {
+ return $scope;   
+}
 
 // $scope.merchantFilter = function(coffeeItem) {
 //   return (document.getElementById("merchant-option").text)
@@ -178,35 +191,27 @@ $scope.itemLimit = 20;
 angular.element(document).ready(function() {
   setTimeout(function() {
     $(window).scroll(function() {
-     if($(window).scrollTop() + $(window).height() == ($(document).height())) {
+     if($(window).scrollTop() + $(window).height() > ($(document).height() + 100)) {
        $scope.itemLimit = $scope.itemLimit + 20;
      }
    })
   },100)
 })
-})
+}])
 
 // Filter for removing duplicate results when using ng-repeat.
 
 app.filter('unique', function() {
-
  return function(collection, keyname) {
-
   var output = [], 
   keys = [];
-
   angular.forEach(collection, function(item) {
-
     var key = item[keyname];
-
     if(keys.indexOf(key) === -1) {
-
       keys.push(key); 
-
       output.push(item);
     }
   });
-
   return output;
 };
 });
@@ -222,39 +227,31 @@ window.onscroll = function() {
   var filterDisplay = document.getElementById("filter-display")
   var priceSlider = document.getElementById("price-slider")
 
-  // var testFooter = document.getElementById("test-footer")
-  // var scrolledOnce = false;
+ 
   if (scrollTop >= minimizeHeader.offsetTop) {
     headerBottom.classList.add("search-fixed")
     minimizeHeader.style.paddingBottom = "50px";
-    // priceSlider.style.position = "fixed";
+
     priceSlider.style.top = "9px";
 
-    // priceSlider.classList.add("slider-minimized")
-    // priceSlider.classList.remove("slider-maximized")
-
-    // coffeeHeader.style.visibility = "hidden"
-
-    // cartHeader.style.visibility = "visible"
-    // $("#cart-header").slideDown(400);
   } else {
     headerBottom.classList.remove("search-fixed")
     headerTop.style.paddingBottom = "0px";
     minimizeHeader.style.paddingBottom = "0px";
 
     priceSlider.style.top = "109px"
-    priceSlider.style.left = "88px"
-    // priceSlider.classList.add("slidier-maximized")
-    // priceSlider.classList.remove("slider-minimized")
-    // priceSlider.style.position = "absolute";
-
-
-        // coffeeHeader.style.visibility = "visible"
-    // $("#cart-header").slideUp(400), function() { 
-      // cartHeader.style.visibility = "hidden"
+  
     }
 
-    // if (scrollTop >= filterDisplay.offsetTop) {
-    //   // headerSlider.style.display = "block";
-    // }
   }
+
+// change button text on resize
+
+$(window).resize(function () {
+    var popularity = $("#popularity");
+    if (popularity.width() < 95) {
+        $(".pop-text").text("Pop ")
+} else {
+  $(".pop-text").text("Popularity ")
+}
+})
