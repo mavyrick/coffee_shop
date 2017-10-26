@@ -188,13 +188,13 @@ $scope.nameHighlightLeave = function() {
 
 // For only showings a certain number of items until user scrolls to bottom of the page. Still working on getting this to work properly.
 
-$scope.itemLimit = 20;
+$scope.itemLimit = 50;
 angular.element(document).ready(function() {
-    $(window).scroll(function() {
-     if($(window).scrollTop() + $(window).height() > ($(document).height() - 100)) {
-       $scope.itemLimit = $scope.itemLimit + 20;
-     }
-   })
+  $(window).scroll(function() {
+   if($(window).scrollTop() + $(window).height() > ($(document).height() - 100)) {
+     $scope.itemLimit = $scope.itemLimit + 50;
+   }
+ })
 })
 }])
 
@@ -229,7 +229,7 @@ window.onscroll = function() {
 
   if (scrollTop >= minimizeHeader.offsetTop) {
     headerBottom.classList.add("search-fixed")
-    minimizeHeader.style.paddingBottom = "50px";
+    minimizeHeader.style.paddingBottom = "100px";
 
     priceSlider.style.top = "9px";
 

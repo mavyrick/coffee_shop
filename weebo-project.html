@@ -71,44 +71,44 @@
 							<!-- </div> -->
 							<!-- </div> -->
 						</div>
-					<div class="outer">
-						<div class="dropdown-items">
-						<form class="dropdown-form">
-							<select name="category-dropdown" class="select-width category-dropdown-select">
-								<option value="" disabled selected>Category</option>
-								<option value="">All</option>
-								<option id="category-option" ng-repeat="coffeeItem in coffeeData | unique: 'category'" value="{{coffeeItem.category}">{{coffeeItem.category}}</option>			
-							</select>
-							<!-- <button ng-click="filterType = categoryFilter">Search by Category</button> -->
-						</form>
-					</div>
+						<div class="outer">
+							<div class="dropdown-items">
+								<form class="dropdown-form">
+									<select name="category-dropdown" class="select-width category-dropdown-select">
+										<option value="" disabled selected>Category</option>
+										<option value="">All</option>
+										<option id="category-option" ng-repeat="coffeeItem in coffeeData | unique: 'category'" value="{{coffeeItem.category}">{{coffeeItem.category}}</option>			
+									</select>
+									<!-- <button ng-click="filterType = categoryFilter">Search by Category</button> -->
+								</form>
+							</div>
 
-						<div class="dropdown-items">
-						<form class="dropdown-form">
-							<select name="brand-dropdown" class="select-width brand-dropdown-select">
-								<option value="" disabled selected>Brand</option>
-								<option value="">All</option>
-								<option id="brand-option"  ng-repeat="coffeeItem in coffeeData | unique: 'brand'" value="{{coffeeItem.brand}}">{{coffeeItem.brand}}</option>			
-							</select>
-						</form>
-					</div>
+							<div class="dropdown-items">
+								<form class="dropdown-form">
+									<select name="brand-dropdown" class="select-width brand-dropdown-select">
+										<option value="" disabled selected>Brand</option>
+										<option value="">All</option>
+										<option id="brand-option"  ng-repeat="coffeeItem in coffeeData | unique: 'brand'" value="{{coffeeItem.brand}}">{{coffeeItem.brand}}</option>			
+									</select>
+								</form>
+							</div>
 
-					<div class="dropdown-items">
-						<form class="dropdown-form">
-							<select name="merchant-dropdown" class="select-width merchant-dropdown-select">
-								<option value="" disabled selected>Merchant</option>
-								<option value="">All</option>					
-								<option id="merchant-option"  ng-repeat="coffeeItem in coffeeData | unique: 'merchant'" value="{{coffeeItem.merchant}">{{coffeeItem.merchant}}</option>
-							</select>
-						</form>
-					</div>
-					<div class="dropdown-items">
-							<form class="select-width dropdown-form filter-search-form">
-								<input id="filter-search-input" placeholder="Filter results">
-								<button class="filter-search-button fa fa-search fa-lg" ng-click="filterType = searchFilter"></button>
-							</form>
+							<div class="dropdown-items">
+								<form class="dropdown-form">
+									<select name="merchant-dropdown" class="select-width merchant-dropdown-select">
+										<option value="" disabled selected>Merchant</option>
+										<option value="">All</option>					
+										<option id="merchant-option"  ng-repeat="coffeeItem in coffeeData | unique: 'merchant'" value="{{coffeeItem.merchant}">{{coffeeItem.merchant}}</option>
+									</select>
+								</form>
+							</div>
+							<div class="dropdown-items">
+								<form class="select-width dropdown-form filter-search-form">
+									<input id="filter-search-input" placeholder="Filter results">
+									<button class="filter-search-button fa fa-search fa-lg" ng-click="filterType = searchFilter"></button>
+								</form>
+							</div>
 						</div>
-				</div>
 					</div>
 
 				</div>
@@ -185,41 +185,41 @@
 				
 						<!- </div> -->
 
-					<!-- <div class="results"> -->
+						<!-- <div class="results"> -->
 							<div class="column-wrap">
-						<div class="coffee-data-list" ng-repeat="coffeeItem in coffeeData | orderBy:sortType:!sortReverse | filter: filterType | limitTo: itemLimit" >
-							<div class="column">
-								<div ng-mouseenter="nameHighlightEnter()" ng-mouseleave="nameHighlightLeave()" class="border">
-									<div class="coffee-item">
-										<a href="{{coffeeItem.url}}">
-											<div class="logo-price">
-												<img class="merchant-logo" src="{{coffeeItem.merchant_logo}}">
-												<div class="price">{{coffeeItem.price}}</div>
-											</div>
-											<br>
-											<br>
-											<div class="coffee-image-wrapper">
-												<img src="{{coffeeItem.image}}" class="coffee-item-image">
-											</div>
-											<div class="text">
-												<div class="display-name">
-													<a id="name-link name-link-{{coffeeItem.id}}" href="{{coffeeItem.url}}">{{coffeeItem.name}}</a>
+								<div class="coffee-data-list" ng-repeat="coffeeItem in coffeeData | orderBy:sortType:!sortReverse | filter: filterType | limitTo: itemLimit" >
+									<div class="column">
+										<div ng-mouseenter="nameHighlightEnter()" ng-mouseleave="nameHighlightLeave()" class="border">
+											<div class="coffee-item">
+												<a href="{{coffeeItem.url}}">
+													<div class="logo-price">
+														<img class="merchant-logo" src="{{coffeeItem.merchant_logo}}">
+														<div class="price">{{coffeeItem.price}}</div>
+													</div>
+													<br>
+													<br>
+													<div class="coffee-image-wrapper">
+														<img src="{{coffeeItem.image}}" class="coffee-item-image">
+													</div>
+													<div class="text">
+														<div class="display-name">
+															<a id="name-link name-link-{{coffeeItem.id}}" href="{{coffeeItem.url}}">{{coffeeItem.name}}</a>
+														</div>
+														<div class="brand">{{coffeeItem.brand}}</div>
+														<div>{{coffeeItem.merchant}}</div>
+														<div class="add-to-cart">
+															<button class="button" type="submit">Add to cart</button>
+															<!-- </form> -->
+														</div>
+													</a>
 												</div>
-												<div class="brand">{{coffeeItem.brand}}</div>
-												<div>{{coffeeItem.merchant}}</div>
-												<div class="add-to-cart">
-													<button class="button" type="submit">Add to cart</button>
-													<!-- </form> -->
-												</div>
-											</a>
+											</div>
+											<!-- </div> -->
 										</div>
 									</div>
-									<!-- </div> -->
 								</div>
-							</div>
-							</div>
-						<!-- </div> -->
-					</div>					
+								<!-- </div> -->
+							</div>					
 
-				</body>
-				</html>
+						</body>
+						</html>
