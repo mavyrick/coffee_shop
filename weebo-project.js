@@ -37,14 +37,14 @@ app.factory('CoffeeData', function($http) {
 
 app.controller('CoffeeController', ['$scope', 'CoffeeData', function($scope, CoffeeData) {
 
-$scope.productSearch = function() {
+  $scope.productSearch = function() {
     var keyword = document.getElementById("product-search-input").value
     CoffeeData.getData(keyword).then(function(response) {
     //   if (response.data != undefined) {
       $scope.coffeeData = response.data;
     // } else {
     //   $scope.coffeeData = []
-    })
+  })
     // } else {
     //     document.getElementById("no-results").style.visibility = "hidden";
     // }
@@ -147,8 +147,9 @@ angular.element(document).ready(function() {
 // };
 
 // Various data filters
+
 $scope.categoryFilter = function(coffeeItem) {
-  return (coffeeItem.category.includes($(event.target).text()))
+  return (coffeeItem.category.includes($(this).text()))
 }
 
 $scope.brandFilter = function(coffeeItem) {
@@ -160,7 +161,7 @@ $scope.brandFilter = function(coffeeItem) {
 // };
 
 $scope.merchantFilter = function(coffeeItem) {
-  return (coffeeItem.merchant.includes($(event.target).text()))
+  return (coffeeItem.merchant.includes($(this).text()))
 }
 
 $scope.getScope = function() {
@@ -185,17 +186,15 @@ $scope.nameHighlightLeave = function() {
   $("#name-link-" + $scope.coffeeData[this.$index].id).css("color", "black");
 }
 
-// For only showings a certain number of items until user scrolls to bottom of the page
+// For only showings a certain number of items until user scrolls to bottom of the page. Still working on getting this to work properly.
 
 $scope.itemLimit = 20;
 angular.element(document).ready(function() {
-  setTimeout(function() {
     $(window).scroll(function() {
-     if($(window).scrollTop() + $(window).height() > ($(document).height() + 100)) {
+     if($(window).scrollTop() + $(window).height() > ($(document).height() - 100)) {
        $scope.itemLimit = $scope.itemLimit + 20;
      }
    })
-  },100)
 })
 }])
 
@@ -227,7 +226,7 @@ window.onscroll = function() {
   var filterDisplay = document.getElementById("filter-display")
   var priceSlider = document.getElementById("price-slider")
 
- 
+
   if (scrollTop >= minimizeHeader.offsetTop) {
     headerBottom.classList.add("search-fixed")
     minimizeHeader.style.paddingBottom = "50px";
@@ -240,18 +239,31 @@ window.onscroll = function() {
     minimizeHeader.style.paddingBottom = "0px";
 
     priceSlider.style.top = "109px"
-  
-    }
 
   }
 
-// change button text on resize
+}
+
+// Change button text on resize
 
 $(window).resize(function () {
-    var popularity = $("#popularity");
-    if (popularity.width() < 95) {
-        $(".pop-text").text("Pop ")
-} else {
-  $(".pop-text").text("Popularity ")
-}
+  var popularity = $("#popularity");
+  if (popularity.width() < 95) {
+    $(".pop-text").text("Pop ")
+  } else {
+    $(".pop-text").text("Popularity ")
+  }
 })
+
+// Loader
+
+// var myVar;
+
+// function myFunction() {
+//     myVar = setTimeout(showPage, 3000);
+// }
+
+// function showPage() {
+//   document.getElementById("loader").style.display = "none";
+//   document.getElementById("myDiv").style.display = "block";
+// }

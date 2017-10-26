@@ -32,6 +32,8 @@
 
 <body ng-app="app" ng-controller="CoffeeController">
 
+	<!-- <div id="loader"></div> -->
+
 	<div class="coffee-header-wrapper">
 		<div id="coffee-header-top">
 			<div class="coffee-header-content">
@@ -69,13 +71,51 @@
 							<!-- </div> -->
 							<!-- </div> -->
 						</div>
+					<div class="outer">
+						<div class="dropdown-items">
+						<form class="dropdown-form">
+							<select name="category-dropdown" class="select-width category-dropdown-select">
+								<option value="" disabled selected>Category</option>
+								<option value="">All</option>
+								<option id="category-option" ng-repeat="coffeeItem in coffeeData | unique: 'category'" value="{{coffeeItem.category}">{{coffeeItem.category}}</option>			
+							</select>
+							<!-- <button ng-click="filterType = categoryFilter">Search by Category</button> -->
+						</form>
 					</div>
-					
+
+						<div class="dropdown-items">
+						<form class="dropdown-form">
+							<select name="brand-dropdown" class="select-width brand-dropdown-select">
+								<option value="" disabled selected>Brand</option>
+								<option value="">All</option>
+								<option id="brand-option"  ng-repeat="coffeeItem in coffeeData | unique: 'brand'" value="{{coffeeItem.brand}}">{{coffeeItem.brand}}</option>			
+							</select>
+						</form>
+					</div>
+
+					<div class="dropdown-items">
+						<form class="dropdown-form">
+							<select name="merchant-dropdown" class="select-width merchant-dropdown-select">
+								<option value="" disabled selected>Merchant</option>
+								<option value="">All</option>					
+								<option id="merchant-option"  ng-repeat="coffeeItem in coffeeData | unique: 'merchant'" value="{{coffeeItem.merchant}">{{coffeeItem.merchant}}</option>
+							</select>
+						</form>
+					</div>
+					<div class="dropdown-items">
+							<form class="select-width dropdown-form filter-search-form">
+								<input id="filter-search-input" placeholder="Filter results">
+								<button class="filter-search-button fa fa-search fa-lg" ng-click="filterType = searchFilter"></button>
+							</form>
+						</div>
+				</div>
+					</div>
+
 				</div>
 				<div class="grid-container">
 					<div id="filter-display"></div>
 
-					<div class="sidebar">
+			<!-- 		<div class="sidebar">
 
 						<div class="filter-search-wrapper">
 							<form class="filter-search-form">
@@ -86,7 +126,7 @@
 						<div class="sidebar-list">
 							<div class="sidebar-title">Categories</div>
 							<div class="categories filter" ng-repeat="coffeeItem in coffeeData | unique: 'category'">
-								<!-- <a id="category-{{coffeeItem.id}}" class="filter-link" ng-click="getScope().filterType = categoryFilter"> {{coffeeItem.category}}</a> -->
+								<a id="category-{{coffeeItem.id}}" class="filter-link" ng-click="getScope().filterType = categoryFilter"> {{coffeeItem.category}}</a>
 							</div>
 							<div class="sidebar-title">Brands</div>
 							<div class="brands filter" ng-repeat="coffeeItem in coffeeData | unique: 'brand'">
@@ -97,6 +137,7 @@
 								<a id="merchant-{{coffeeItem.id}}" class="filter-link" ng-click="getScope().filterType = merchantFilter">{{coffeeItem.merchant}}</a>
 							</div>
 						</div>
+					</div>	 -->	
 
 					<!-- <select ng-model="selectedName" ng-options="coffeeItem.category for coffeeItem in coffeeData | unique: 'category">
 						<option value="" disabled selected>Category</option>
@@ -144,9 +185,9 @@
 				
 						<!- </div> -->
 
-					</div>		
-					<div class="results">
-						<div class="coffee-data-list" ng-repeat="coffeeItem in coffeeData | orderBy:sortType:!sortReverse | filter: filterType" | limitTo: itemLimit" >
+					<!-- <div class="results"> -->
+							<div class="column-wrap">
+						<div class="coffee-data-list" ng-repeat="coffeeItem in coffeeData | orderBy:sortType:!sortReverse | filter: filterType | limitTo: itemLimit" >
 							<div class="column">
 								<div ng-mouseenter="nameHighlightEnter()" ng-mouseleave="nameHighlightLeave()" class="border">
 									<div class="coffee-item">
@@ -176,7 +217,8 @@
 									<!-- </div> -->
 								</div>
 							</div>
-						</div>
+							</div>
+						<!-- </div> -->
 					</div>					
 
 				</body>
