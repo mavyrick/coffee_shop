@@ -42,6 +42,12 @@ app.controller('CoffeeController', ['$scope', 'CoffeeData', function($scope, Cof
     CoffeeData.getData(keyword).then(function(response) {
     //   if (response.data != undefined) {
       $scope.coffeeData = response.data;
+      // if ($scope.coffeeData)
+      if ($scope.coffeeData.length != undefined) {
+      $scope.resultNum = $scope.coffeeData.length + " results found"
+  } else {
+    $scope.resultNum = "no results found"
+  }
     // } else {
     //   $scope.coffeeData = []
   })
@@ -49,7 +55,6 @@ app.controller('CoffeeController', ['$scope', 'CoffeeData', function($scope, Cof
     //     document.getElementById("no-results").style.visibility = "hidden";
     // }
   }
-
   // .then(function() {
   //     console.log($scope.coffeeData.length)
   //       if ($scope.coffeeData.length == 0) {

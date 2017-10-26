@@ -4,6 +4,9 @@
 	<meta charset="utf-8">
 	<title>Coffee Shop</title>
 
+		<!-- font -->
+	<link href="https://fonts.googleapis.com/css?family=Assistant" rel="stylesheet">
+
 	<!-- style -->
 	<link rel="stylesheet/less" type="text/css" href="weebo-demo.less"/>
 
@@ -31,6 +34,8 @@
 
 
 <body ng-app="app" ng-controller="CoffeeController">
+
+	<div class="wrapper">
 
 	<!-- <div id="loader"></div> -->
 
@@ -187,6 +192,10 @@
 
 						<!-- <div class="results"> -->
 							<div class="column-wrap">
+								<div class="result-number">
+									<span>{{resultNum}}</span>
+								</div>
+
 								<div class="coffee-data-list" ng-repeat="coffeeItem in coffeeData | orderBy:sortType:!sortReverse | filter: filterType | limitTo: itemLimit" >
 									<div class="column">
 										<div ng-mouseenter="nameHighlightEnter()" ng-mouseleave="nameHighlightLeave()" class="border">
@@ -218,7 +227,7 @@
 										</div>
 									</div>
 								</div>
-								<!-- </div> -->
+								</div>
 							</div>					
 
 						</body>

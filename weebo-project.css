@@ -1,8 +1,12 @@
 body {
-  font-family: arial;
+  /*font-family: arial;*/
 }
 
 /*main content*/
+
+.wrapper {
+  font-family: arial;
+}
 
 a {
   color: black;
@@ -24,6 +28,13 @@ a {
   float: right;
 }
 
+.result-number {
+  font-size: 30px;
+  font-weight: bold;
+  color: grey;
+  margin-top: 10px;
+}
+
 .column-wrap {
   text-align: center;
 }
@@ -38,7 +49,7 @@ a {
   /*display: table;*/
   /*margin: auto;*/
   height: 345px;
-  margin-top: 5px;
+  /*margin-top: 5px;*/
   width: 345px;
   padding: 10px;
 }
