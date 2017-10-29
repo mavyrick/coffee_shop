@@ -44,10 +44,10 @@ app.controller('CoffeeController', ['$scope', 'CoffeeData', function($scope, Cof
       $scope.coffeeData = response.data;
       // if ($scope.coffeeData)
       if ($scope.coffeeData.length != undefined) {
-      $scope.resultNum = $scope.coffeeData.length + " results found"
-  } else {
-    $scope.resultNum = "no results found"
-  }
+        $scope.resultNum = $scope.coffeeData.length + " results found"
+      } else {
+        $scope.resultNum = "no results found"
+      }
     // } else {
     //   $scope.coffeeData = []
   })

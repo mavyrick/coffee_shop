@@ -1,7 +1,3 @@
-body {
-  /*font-family: arial;*/
-}
-
 /*main content*/
 
 .wrapper {
@@ -73,7 +69,6 @@ a {
   text-overflow: ellipsis;
 }
 
-
 .button {
   display: inline-block;
   zoom: 1;
@@ -126,9 +121,7 @@ a {
   font-size: 13px;
   padding-top: 12px;
   padding-bottom: 12px;
-
 }
-
 
 .product-image-link {
   display: block;
@@ -176,7 +169,6 @@ a {
   padding-top: 10px;
   background-color: steelblue;
   z-index: 100;
-
 }
 
 .outer {
@@ -252,7 +244,6 @@ a {
 
 
 #price-slider {
-
 }
 
 
@@ -334,102 +325,124 @@ div.ui-slider-range.ui-widget-header {
   width: 25%;
 }
 
-.select-width {
+.bottom-filters {
+  margin-top: 10px;
+}
+
+.coffee-dropdown {
   width: 300px;
-}
-
-/*custom fonts*/
-
-@font-face {
-  font-family: "ExpressoCaffe";
-  src: url("fonts/Channel.ttf");
-}
-
-/*sidebar*/
-.sidebar {
-  float: left
-  width: 20%;
-  text-align: left;
-  margin-top: 30px;
-}
-
-#filter-search-wrapper {
-}
-
-#filter-search-input {
-  width: 225px;
-  height: 35px;
-  font-size: 16px;
-  border: solid lightgrey 1px;
-  background-color: white;
-  border-radius: 7px;
-  padding-left: 15px;
-}
-
-.filter-search-button {
-  height: 35px;
-  width: 35px;
-  background-color: silver;
-  border: 1px solid silver;
-  border-radius: 7px;
+  height: 33px;
   color: white;
-  position: relative;
-  bottom: 2px;
-}
-
-.filter-search-button:hover {
-  background-color: #A0A0A0;
-  border: 1px solid #A0A0A0;
-}
-
-
-.filters {
-  padding: 25px;
-  position: fixed;
-  background-color: grey;
-}
-
-.sidebar-list {
-  margin-top: 20px;
-}
-
-.sidebar-title {
-  font-size: 22px;
-  font-weight: bold;
-  line-height: 50px;
-}
-
-.brands {
-
-}
-
-.merchants {
-
-}
-
-.categories {
-
-}
-
-.filter-link {
-  color: black;
-  cursor: pointer;
+  background-color: #6cb8df;
+  border: 1px solid #6cb8df;
   font-size: 16px;
-  line-height: 25px;
+  text-align-last: center;
+  font-size: 18px;
 }
 
-.filter-link:hover {
-  color: #f6931f;
-  text-decoration: none;
+/*.catgegory-dropdown-select {
+  background-color: red;
+
 }
 
-/*no results*/
-
-#no-results {
-  visibility: hidden;
+.brand-dropdown-select {
+  background-color: blue;
+  
 }
 
-/*media queries*/
+.merchant-dropdown-select {
+  background-color: gold;
+  
+  }*/
+
+  /*custom fonts*/
+
+  @font-face {
+    font-family: "ExpressoCaffe";
+    src: url("fonts/Channel.ttf");
+  }
+
+  /*sidebar*/
+  .sidebar {
+    float: left
+    width: 20%;
+    text-align: left;
+    margin-top: 30px;
+  }
+
+  #filter-search-wrapper {
+  }
+
+  #filter-search-input {
+    width: 225px;
+    height: 35px;
+    font-size: 16px;
+    border: solid lightgrey 1px;
+    background-color: white;
+    border-radius: 7px;
+    padding-left: 15px;
+  }
+
+  .filter-search-button {
+    height: 35px;
+    width: 35px;
+    background-color: silver;
+    border: 1px solid silver;
+    border-radius: 7px;
+    color: white;
+    position: relative;
+    bottom: 2px;
+  }
+
+  .filter-search-button:hover {
+    background-color: #A0A0A0;
+    border: 1px solid #A0A0A0;
+  }
+
+  .filters {
+    padding: 25px;
+    position: fixed;
+    background-color: grey;
+  }
+
+  .sidebar-list {
+    margin-top: 20px;
+  }
+
+  .sidebar-title {
+    font-size: 22px;
+    font-weight: bold;
+    line-height: 50px;
+  }
+
+  .brands {
+  }
+
+  .merchants {
+  }
+
+  .categories {
+  }
+
+  .filter-link {
+    color: black;
+    cursor: pointer;
+    font-size: 16px;
+    line-height: 25px;
+  }
+
+  .filter-link:hover {
+    color: #f6931f;
+    text-decoration: none;
+  }
+
+  /*no results*/
+
+  #no-results {
+    visibility: hidden;
+  }
+
+  /*media queries*/
 
 /*@media only screen and (max-width: 1440px) {
   #price-slider {
@@ -499,9 +512,4 @@ div.ui-slider-range.ui-widget-header {
   @keyframes animatebottom { 
     from{ bottom:-100px; opacity:0 } 
     to{ bottom:0; opacity:1 }
-  }
-
-  #myDiv {
-    display: none;
-    text-align: center;
   }
